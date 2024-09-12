@@ -19,7 +19,7 @@ public class LikeService {
 			likeRepository.save(like);
 			System.out.println(like.getVideoId() + " başarıyla kaydedildi.");
 		} catch (Exception e) {
-			System.out.println("Service User kaydedilirken hata oluştu: " + e.getMessage());
+			System.out.println("Service Like kaydedilirken hata oluştu: " + e.getMessage());
 		}
 		
 		return Optional.ofNullable(like);
@@ -33,10 +33,10 @@ public class LikeService {
 				likeRepository.update(like);
 				System.out.println(like.getVideoId() + " başarıyla güncellendi.");
 			} catch (Exception e) {
-				System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
+				System.out.println("Service Like güncellenirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Güncellenmek istenen takım bulunamadı.");
+			System.out.println("Service Güncellenmek istenen Like bulunamadı.");
 		}
 		return Optional.of(like);
 	}
@@ -47,9 +47,9 @@ public class LikeService {
 		if (mevcutLike.isPresent()) {
 			try {
 				likeRepository.delete(id);
-				System.out.println("Service User başarıyla silindi.");
+				System.out.println("Service Like başarıyla silindi.");
 			} catch (Exception e) {
-				System.out.println("Service User silinirken hata oluştu: " + e.getMessage());
+				System.out.println("Service Like silinirken hata oluştu: " + e.getMessage());
 			}
 		} else {
 			System.out.println("Service Silinmek istenen Like bulunamadı.");

@@ -19,7 +19,7 @@ public class VideoService {
 			videoRepository.save(video);
 			System.out.println(video.getTitle() + " başarıyla kaydedildi.");
 		} catch (Exception e) {
-			System.out.println("Service User kaydedilirken hata oluştu: " + e.getMessage());
+			System.out.println("Service Video kaydedilirken hata oluştu: " + e.getMessage());
 		}
 		
 		return Optional.ofNullable(video);
@@ -33,10 +33,10 @@ public class VideoService {
 				videoRepository.update(video);
 				System.out.println(video.getTitle() + " başarıyla güncellendi.");
 			} catch (Exception e) {
-				System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
+				System.out.println("Service Video güncellenirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Güncellenmek istenen takım bulunamadı.");
+			System.out.println("Service Güncellenmek istenen Video bulunamadı.");
 		}
 		return Optional.of(video);
 	}
@@ -47,12 +47,12 @@ public class VideoService {
 		if (mevcutVideo.isPresent()) {
 			try {
 				videoRepository.delete(id);
-				System.out.println("Service User başarıyla silindi.");
+				System.out.println("Service Video başarıyla silindi.");
 			} catch (Exception e) {
-				System.out.println("Service User silinirken hata oluştu: " + e.getMessage());
+				System.out.println("Service Video silinirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Silinmek istenen takım bulunamadı.");
+			System.out.println("Service Silinmek istenen Video bulunamadı.");
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class VideoService {
 	public List<Video> findAll() {
 		List<Video> videoList = videoRepository.findAll();
 		if (videoList.isEmpty()) {
-			System.out.println("Service Veritabanında kayıtlı takım bulunmamaktadır.");
+			System.out.println("Service Veritabanında kayıtlı Video bulunmamaktadır.");
 		}
 		return videoList;
 	}
@@ -69,8 +69,8 @@ public class VideoService {
 	public Optional<Video> findById(Long id) {
 		Optional<Video> videoOptional = videoRepository.findById(id);
 		videoOptional.ifPresentOrElse(
-				video -> System.out.println("Service User bulundu: " + video.getTitle()),
-				() -> System.out.println("Service Böyle bir takım bulunamadı.")
+				video -> System.out.println("Service Video bulundu: " + video.getTitle()),
+				() -> System.out.println("Service Böyle bir Video bulunamadı.")
 		);
 		return videoOptional;
 	}

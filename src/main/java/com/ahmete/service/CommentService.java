@@ -21,7 +21,7 @@ public class CommentService {
 			commentRepository.save(comment);
 			System.out.println(comment.getVideoId() + " başarıyla kaydedildi.");
 		} catch (Exception e) {
-			System.out.println("Service User kaydedilirken hata oluştu: " + e.getMessage());
+			System.out.println("Service Comment kaydedilirken hata oluştu: " + e.getMessage());
 		}
 		
 		return Optional.ofNullable(comment);
@@ -35,10 +35,10 @@ public class CommentService {
 				commentRepository.update(comment);
 				System.out.println(comment.getVideoId() + " başarıyla güncellendi.");
 			} catch (Exception e) {
-				System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
+				System.out.println("Service Comment güncellenirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Güncellenmek istenen takım bulunamadı.");
+			System.out.println("Service Güncellenmek istenen Comment bulunamadı.");
 		}
 		return Optional.of(comment);
 	}
@@ -49,12 +49,12 @@ public class CommentService {
 		if (mevcutComment.isPresent()) {
 			try {
 				commentRepository.delete(id);
-				System.out.println("Service User başarıyla silindi.");
+				System.out.println("Service Comment başarıyla silindi.");
 			} catch (Exception e) {
-				System.out.println("Service User silinirken hata oluştu: " + e.getMessage());
+				System.out.println("Service Comment silinirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Silinmek istenen Like bulunamadı.");
+			System.out.println("Service Silinmek istenen Comment bulunamadı.");
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class CommentService {
 	public List<Comment> findAll() {
 		List<Comment> commentList = commentRepository.findAll();
 		if (commentList.isEmpty()) {
-			System.out.println("Service Veritabanında kayıtlı like bulunmamaktadır.");
+			System.out.println("Service Veritabanında kayıtlı Comment bulunmamaktadır.");
 		}
 		return commentList;
 	}
@@ -71,8 +71,8 @@ public class CommentService {
 	public Optional<Comment> findById(Long id) {
 		Optional<Comment> commentOptional = commentRepository.findById(id);
 		commentOptional.ifPresentOrElse(
-				comment -> System.out.println("Service Like bulundu: " + comment.getVideoId()),
-				() -> System.out.println("Service Böyle bir like bulunamadı.")
+				comment -> System.out.println("Service Comment bulundu: " + comment.getVideoId()),
+				() -> System.out.println("Service Böyle bir Comment bulunamadı.")
 		);
 		return commentOptional;
 	}

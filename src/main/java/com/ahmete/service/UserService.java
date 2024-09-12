@@ -35,7 +35,7 @@ public class UserService {
 				System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Güncellenmek istenen takım bulunamadı.");
+			System.out.println("Service Güncellenmek istenen User bulunamadı.");
 		}
 		return Optional.of(user);
 	}
@@ -51,7 +51,7 @@ public class UserService {
 				System.out.println("Service User silinirken hata oluştu: " + e.getMessage());
 			}
 		} else {
-			System.out.println("Service Silinmek istenen takım bulunamadı.");
+			System.out.println("Service Silinmek istenen User bulunamadı.");
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class UserService {
 	public List<User> findAll() {
 		List<User> takimlar = userRepository.findAll();
 		if (takimlar.isEmpty()) {
-			System.out.println("Service Veritabanında kayıtlı takım bulunmamaktadır.");
+			System.out.println("Service Veritabanında kayıtlı User bulunmamaktadır.");
 		}
 		return takimlar;
 	}
@@ -69,7 +69,7 @@ public class UserService {
 		Optional<User> takim = userRepository.findById(id);
 		takim.ifPresentOrElse(
 				u -> System.out.println("Service User bulundu: " + u.getSurname()),
-				() -> System.out.println("Service Böyle bir takım bulunamadı.")
+				() -> System.out.println("Service Böyle bir User bulunamadı.")
 		);
 		return takim;
 	}
