@@ -1,5 +1,7 @@
 package com.ahmete.controller;
 
+import com.ahmete.dto.request.UserSaveRequestDto;
+import com.ahmete.dto.response.UserResponseDto;
 import com.ahmete.entity.User;
 import com.ahmete.service.UserService;
 
@@ -13,24 +15,24 @@ public class UserController {
 		this.userService = new UserService();
 	}
 	
-	public Optional<User> save(User user) {
+	public Optional<UserResponseDto> save(UserSaveRequestDto dto) {
 		try {
-			userService.save(user);
-			System.out.println("Controller User başarıyla kaydedildi.");
+			 return userService.save(dto);
+			 
 		} catch (Exception e) {
 			System.out.println("Controller User kaydedilirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(user);
+		return Optional.empty();
 	}
 	
-	public Optional<User> update(User user) {
+	public Optional<UserResponseDto> update(UserSaveRequestDto dto) {
 		try {
-			userService.update(user);
+			userService.update(dto);
 			System.out.println("Controller User başarıyla güncellendi.");
 		} catch (Exception e) {
 			System.out.println("Controller User güncellenirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(user);
+		return Optional.empty();
 	}
 	
 	public void delete(Long id) {

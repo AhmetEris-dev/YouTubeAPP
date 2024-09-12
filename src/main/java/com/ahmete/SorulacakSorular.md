@@ -11,3 +11,9 @@ System.out.println("Service Like kaydedilirken hata oluştu: " + e.getMessage())
 	}
 
 burada neden videoID aldık diye sor
+
+alperen hocaya  FutbolcuSaveRequestDto neden save ile isimlendirdik alperen hocaya sor 
+
+videorequest ve videoresponse u alperen hocaya sor
+
+service deki hangi metotların dto yapılacagını sor

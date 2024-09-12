@@ -1,5 +1,7 @@
 package com.ahmete.service;
 
+import com.ahmete.dto.request.VideoSaveRequestDto;
+import com.ahmete.dto.response.VideoResponseDto;
 import com.ahmete.entity.User;
 import com.ahmete.entity.Video;
 import com.ahmete.repository.VideoRepository;
@@ -9,37 +11,63 @@ import java.util.Optional;
 
 public class VideoService {
 	private final VideoRepository videoRepository;
-	
+	private final UserService userService;
 	public VideoService() {
 		this.videoRepository = new VideoRepository();
+		this.userService = new UserService();
 	}
 	
-	public Optional<Video> save(Video video) {
+	public Optional<VideoResponseDto> save(VideoSaveRequestDto dto) {
+		Video video;
+		Optional<Video> videoOptional;
+		VideoResponseDto responseDto = new VideoResponseDto();
 		try {
-			videoRepository.save(video);
-			System.out.println(video.getTitle() + " başarıyla kaydedildi.");
+			Optional<User> userOptional=userService.findByUserName(dto.getUserName());
+			if (userOptional.isPresent()) {
+				video = new Video();
+				video.setTitle(dto.getTitle());
+				video.setDescription(dto.getDescription());
+				video.setUserId(userOptional.get().getId());
+				videoOptional = videoRepository.save(video);
+				
+				responseDto.setUserName(userService.findById(videoOptional.get().getUserId()).get().getUsername());
+				responseDto.setTitle(videoOptional.get().getTitle());
+				responseDto.setDescription(videoOptional.get().getDescription());
+				System.out.println(videoOptional.get().getTitle()+" başarıyla kaydedildi.");
+				return Optional.of(responseDto);
+				
+			}
+			
 		} catch (Exception e) {
 			System.out.println("Service Video kaydedilirken hata oluştu: " + e.getMessage());
 		}
 		
-		return Optional.ofNullable(video);
+		return Optional.of(responseDto);
 	}
 	
 	
-	public Optional<Video> update(Video video) {
-		Optional<Video> mevcutVideo = findById(video.getId());
-		if (mevcutVideo.isPresent()) {
-			try {
-				videoRepository.update(video);
-				System.out.println(video.getTitle() + " başarıyla güncellendi.");
-			} catch (Exception e) {
-				System.out.println("Service Video güncellenirken hata oluştu: " + e.getMessage());
-			}
-		} else {
-			System.out.println("Service Güncellenmek istenen Video bulunamadı.");
-		}
-		return Optional.of(video);
-	}
+//	public Optional<VideoResponseDto> update(VideoSaveRequestDto dto) {
+//		VideoResponseDto responseDto = new VideoResponseDto();
+//		try {
+//			Optional<Video> byTitle = videoRepository.findByTitle(dto.getTitle());
+//			if (byTitle.isPresent()) { // username user varmı
+//
+//				Video video = byTitle.get();
+//				video.setTitle(dto.getTitle());
+//				video.setDescription(dto.getDescription());
+//
+//
+//				System.out.println(updateUser.get().getUsername() + " başarıyla güncellendi.");
+//			}
+//			else {
+//				System.out.println("Service Güncellenmek istenen User bulunamadı.");
+//			}
+//		}catch (Exception e) {
+//			System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
+//
+//		}
+//		return Optional.of(responseDto);
+//	}
 	
 	
 	public void delete(Long id) {

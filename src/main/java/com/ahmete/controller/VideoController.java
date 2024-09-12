@@ -1,5 +1,7 @@
 package com.ahmete.controller;
 
+import com.ahmete.dto.request.VideoSaveRequestDto;
+import com.ahmete.dto.response.VideoResponseDto;
 import com.ahmete.entity.Video;
 import com.ahmete.service.VideoService;
 
@@ -13,25 +15,25 @@ public class VideoController {
 		this.videoService = new VideoService();
 	}
 	
-	public Optional<Video> save(Video video) {
+	public Optional<VideoResponseDto> save(VideoSaveRequestDto dto) {
 		try {
-			videoService.save(video);
+			videoService.save(dto);
 			System.out.println("Controller Video başarıyla kaydedildi.");
 		} catch (Exception e) {
 			System.out.println("Controller Video kaydedilirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(video);
+		return Optional.empty();
 	}
 	
-	public Optional<Video> update(Video video) {
-		try {
-			videoService.update(video);
-			System.out.println("Controller Video başarıyla güncellendi.");
-		} catch (Exception e) {
-			System.out.println("Controller Video güncellenirken hata oluştu: " + e.getMessage());
-		}
-		return Optional.ofNullable(video);
-	}
+//	public Optional<Video> update(Video video) {
+//		try {
+//			videoService.update(video);
+//			System.out.println("Controller Video başarıyla güncellendi.");
+//		} catch (Exception e) {
+//			System.out.println("Controller Video güncellenirken hata oluştu: " + e.getMessage());
+//		}
+//		return Optional.ofNullable(video);
+//	}
 	
 	public void delete(Long id) {
 		try {
