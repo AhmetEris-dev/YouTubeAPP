@@ -116,4 +116,20 @@ public class UserRepository implements ICrud<User> {
 		
 		return new User(id, name, surname, email, username,password, state, createat, updateat);
 	}
+	
+	public Optional<User> findBySurName(String userSurname) {
+		sql = "SELECT * FROM tbl_user WHERE isim = ?";
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setString(1, userSurname);
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					return Optional.of(getValueFromResultSet(resultSet));
+				}
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return Optional.empty();
+		
+	}
 }

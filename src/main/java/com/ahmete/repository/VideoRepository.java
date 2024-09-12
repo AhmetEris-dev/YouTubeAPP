@@ -108,4 +108,19 @@ public class VideoRepository implements ICrud<Video> {
 		
 		return new Video(id, userId, title, description, LocalDateTime.parse(uploadDate), state, createat, updateat);
 	}
+	
+	public Optional<Video> findByTitle(String videoTitle) {
+		sql = "SELECT * FROM tbl_video WHERE isim = ?";
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setString(1, videoTitle);
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					return Optional.of(getValueFromResultSet(resultSet));
+				}
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return Optional.empty();
+	}
 }
