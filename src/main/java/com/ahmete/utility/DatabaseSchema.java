@@ -19,9 +19,9 @@ public class DatabaseSchema {
                 "id BIGSERIAL PRIMARY KEY, " + // PostgreSQL'de BIGSERIAL kullanılır
                 "name VARCHAR(255), " +
                 "surname varchar(255), " +
-                "email varchar(255) UNIQUE" +
-                "username varchar(30) UNIQUE " +
-                "password varchar(16)"+
+                "email varchar(255) UNIQUE," +
+                "username varchar(30) UNIQUE, " +
+                "password varchar(16),"+
                 "state INTEGER  DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +

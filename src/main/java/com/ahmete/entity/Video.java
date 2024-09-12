@@ -1,5 +1,6 @@
 package com.ahmete.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Video extends BaseEntity{
@@ -7,7 +8,7 @@ public class Video extends BaseEntity{
 	private Long userId;
 	private String title;
 	private String description;
-	private LocalDateTime uploadDate=LocalDateTime.now();
+	private LocalDateTime uploadDate=LocalDateTime.now(); // daha sonra kullanacagın zaman Long olarak tut
 	
 	public Video() {
 	}
