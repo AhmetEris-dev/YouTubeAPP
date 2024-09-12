@@ -40,9 +40,9 @@ public class VideoRepository implements ICrud<Video> {
 	public Optional<Video> update(Video video) {
 		sql = "UPDATE tbl_video SET  title = ?, description = ? WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
-			preparedStatement.setString(2, video.getTitle());
-			preparedStatement.setString(3, video.getDescription());
-			preparedStatement.setLong(4, video.getId());
+			preparedStatement.setString(1, video.getTitle());
+			preparedStatement.setString(2, video.getDescription());
+			preparedStatement.setLong(3, video.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows == 0) {
 				System.err.println("Repository: Video güncellenirken hata oluştu: Güncelleme başarısız.");

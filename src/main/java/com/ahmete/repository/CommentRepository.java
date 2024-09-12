@@ -68,7 +68,7 @@ public class CommentRepository implements ICrud<Comment> {
 	
 	@Override
 	public List<Comment> findAll() {
-		sql = "SELECT * FROM tbl_like";
+		sql = "SELECT * FROM tbl_comment";
 		List<Comment> commentList = new ArrayList<>();
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql);
 		     ResultSet resultSet = preparedStatement.executeQuery()) {
