@@ -1,7 +1,6 @@
 package com.ahmete.repository;
 
 import com.ahmete.entity.Like;
-import com.ahmete.entity.User;
 import com.ahmete.utility.ConnectionProvider;
 import com.ahmete.utility.ICrud;
 
@@ -29,7 +28,7 @@ public class LikeRepository implements ICrud<Like> {
 			preparedStatement.setLong(2, like.getVideoId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
 		}
 		return Optional.ofNullable(like);
 	}
@@ -48,7 +47,8 @@ public class LikeRepository implements ICrud<Like> {
 				System.out.println("Güncelleme Başarısız!");
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return Optional.of(like);
 	}
@@ -60,7 +60,8 @@ public class LikeRepository implements ICrud<Like> {
 			preparedStatement.setLong(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 	}
 	
@@ -75,7 +76,8 @@ public class LikeRepository implements ICrud<Like> {
 				likeList.add(getValueFromResultSet(resultSet));
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return likeList;
 	}
@@ -91,7 +93,8 @@ public class LikeRepository implements ICrud<Like> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return Optional.empty();
 	}

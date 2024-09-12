@@ -1,6 +1,6 @@
 package com.ahmete.repository;
 
-import com.ahmete.entity.User;
+
 import com.ahmete.entity.Video;
 import com.ahmete.utility.ConnectionProvider;
 import com.ahmete.utility.ICrud;
@@ -8,7 +8,6 @@ import com.ahmete.utility.ICrud;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +75,7 @@ public class VideoRepository implements ICrud<Video> {
 				videoList.add(getValueFromResultSet(resultSet));
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Repository: Video verileri alınırken hata oluştu: " + e.getMessage());
 		}
 		return videoList;
 	}
@@ -92,7 +91,7 @@ public class VideoRepository implements ICrud<Video> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Repository: Video verileri alınırken hata oluştu: " + e.getMessage());
 		}
 		return Optional.empty();
 	}

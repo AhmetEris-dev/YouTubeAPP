@@ -1,7 +1,6 @@
 package com.ahmete.repository;
 
 import com.ahmete.entity.Comment;
-import com.ahmete.entity.Like;
 import com.ahmete.utility.ConnectionProvider;
 import com.ahmete.utility.ICrud;
 
@@ -29,7 +28,8 @@ public class CommentRepository implements ICrud<Comment> {
 			preparedStatement.setLong(2, comment.getVideoId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return Optional.ofNullable(comment);
 	}
@@ -48,7 +48,8 @@ public class CommentRepository implements ICrud<Comment> {
 				System.out.println("Güncelleme Başarısız!");
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return Optional.of(comment);
 	}
@@ -60,7 +61,8 @@ public class CommentRepository implements ICrud<Comment> {
 			preparedStatement.setLong(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 	}
 	
@@ -75,7 +77,8 @@ public class CommentRepository implements ICrud<Comment> {
 				commentList.add(getValueFromResultSet(resultSet));
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return commentList;
 	}
@@ -93,7 +96,8 @@ public class CommentRepository implements ICrud<Comment> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			
 		}
 		return Optional.empty();
 	}
