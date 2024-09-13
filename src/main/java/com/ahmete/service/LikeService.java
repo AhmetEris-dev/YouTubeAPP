@@ -17,7 +17,7 @@ public class LikeService {
 	public Optional<Like> save(Like like) {
 		try {
 			likeRepository.save(like);
-			System.out.println(like.getVideoId() + " başarıyla kaydedildi.");
+			System.out.println(like.getVideoId() + " başarıyla kaydedildi."); //userid de eklenecek
 		} catch (Exception e) {
 			System.out.println("Service Like kaydedilirken hata oluştu: " + e.getMessage());
 		}

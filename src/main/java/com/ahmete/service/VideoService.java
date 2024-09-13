@@ -1,11 +1,13 @@
 package com.ahmete.service;
 
 import com.ahmete.dto.request.VideoSaveRequestDto;
+import com.ahmete.dto.request.VideoUpdateRequestDto;
 import com.ahmete.dto.response.VideoResponseDto;
 import com.ahmete.entity.User;
 import com.ahmete.entity.Video;
 import com.ahmete.repository.VideoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,28 +48,35 @@ public class VideoService {
 	}
 	
 	
-//	public Optional<VideoResponseDto> update(VideoSaveRequestDto dto) {
-//		VideoResponseDto responseDto = new VideoResponseDto();
-//		try {
-//			Optional<Video> byTitle = videoRepository.findByTitle(dto.getTitle());
-//			if (byTitle.isPresent()) { // username user varmı
-//
-//				Video video = byTitle.get();
-//				video.setTitle(dto.getTitle());
-//				video.setDescription(dto.getDescription());
-//
-//
-//				System.out.println(updateUser.get().getUsername() + " başarıyla güncellendi.");
-//			}
-//			else {
-//				System.out.println("Service Güncellenmek istenen User bulunamadı.");
-//			}
-//		}catch (Exception e) {
-//			System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
-//
-//		}
-//		return Optional.of(responseDto);
-//	}
+	public Optional<VideoResponseDto> update(VideoUpdateRequestDto dto) {
+		//TODO HATA DÜZELTİLECEK !!!!!!!!!!!!!! FTS !!!!!!!!!!!
+		try {
+			Optional<Video> byTitle = videoRepository.findById(dto.getVideoId());
+			if (byTitle.isPresent()) {
+
+				Video video = byTitle.get();
+				video.setTitle(dto.getTitle());
+				video.setDescription(dto.getDescription());
+				
+				Optional<Video>  updateVideo = videoRepository.update(video);
+				
+				VideoResponseDto responseDto = new VideoResponseDto();
+				responseDto.setTitle(updateVideo.get().getTitle());
+				responseDto.setDescription(updateVideo.get().getDescription());
+				
+				System.out.println(updateVideo.get().getTitle() + " başarıyla güncellendi.");
+				return Optional.of(responseDto);
+				
+			}
+			else {
+				System.out.println("Service Güncellenmek istenen Video bulunamadı.");
+			}
+		}catch (Exception e) {
+			System.out.println("Service Video güncellenirken hata oluştu: " + e.getMessage());
+
+		}
+		return Optional.empty();
+	}
 	
 	
 	public void delete(Long id) {
@@ -85,14 +94,23 @@ public class VideoService {
 	}
 	
 	
-	public List<Video> findAll() {
+	public List<VideoResponseDto> findAll() {
+		VideoResponseDto responseDto = new VideoResponseDto();
 		List<Video> videoList = videoRepository.findAll();
 		if (videoList.isEmpty()) {
 			System.out.println("Service Veritabanında kayıtlı Video bulunmamaktadır.");
 		}
-		return videoList;
+		
+		List<VideoResponseDto> responseDtoList = new ArrayList<>();
+		for (Video video : videoList) {
+			
+			responseDto.setUserName(userService.findById(video.getUserId()).get().getUsername());
+			responseDto.setTitle(video.getTitle());
+			responseDto.setDescription(video.getDescription());
+			responseDtoList.add(responseDto);
+		}
+		return responseDtoList;
 	}
-	
 	
 	public Optional<Video> findById(Long id) {
 		Optional<Video> videoOptional = videoRepository.findById(id);

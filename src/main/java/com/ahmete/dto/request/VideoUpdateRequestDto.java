@@ -1,19 +1,21 @@
 package com.ahmete.dto.request;
 
-import java.time.LocalDateTime;
-
-public class VideoSaveRequestDto {
-	
+public class VideoUpdateRequestDto {
 	private String userName;
 	private String title;
 	private String description;
+	private Long videoId;
 	
-	
-	public VideoSaveRequestDto(String userName, String title, String description) {
+	public VideoUpdateRequestDto(String userName, String title, String description) {
 		this.userName = userName;
 		this.title = title;
 		this.description = description;
-		
+	}
+	
+	public VideoUpdateRequestDto( String title, String description, Long videoId) {
+		this.title = title;
+		this.description = description;
+		this.videoId = videoId;
 	}
 	
 	public String getUserName() {
@@ -40,4 +42,11 @@ public class VideoSaveRequestDto {
 		this.description = description;
 	}
 	
+	public Long getVideoId() {
+		return videoId;
+	}
+	
+	public void setVideoId(Long videoId) {
+		this.videoId = videoId;
+	}
 }

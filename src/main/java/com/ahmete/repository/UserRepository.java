@@ -117,10 +117,10 @@ public class UserRepository implements ICrud<User> {
 		return new User(id, name, surname, email, username,password, state, createat, updateat);
 	}
 	
-	public Optional<User> findByUserName(String userSurname) {
-		sql = "SELECT * FROM tbl_user WHERE isim = ?";
+	public Optional<User> findByUserName(String username) {
+		sql = "SELECT * FROM tbl_user WHERE username = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
-			preparedStatement.setString(1, userSurname);
+			preparedStatement.setString(1, username);
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return Optional.of(getValueFromResultSet(resultSet));

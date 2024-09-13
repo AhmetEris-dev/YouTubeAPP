@@ -1,10 +1,12 @@
 package com.ahmete.service;
 
 import com.ahmete.dto.request.UserSaveRequestDto;
+import com.ahmete.dto.request.UserUpdateRequestDto;
 import com.ahmete.dto.response.UserResponseDto;
 import com.ahmete.entity.User;
 import com.ahmete.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,38 +43,27 @@ public class UserService {
 		return Optional.of(responseDto);
 	}
 	
-	
-	public Optional<UserResponseDto> update(UserSaveRequestDto dto) {
-		UserResponseDto responseDto = new UserResponseDto();
-		try {
-			Optional<User> existUser = userRepository.findByUserName(dto.getUsername());
-			if (existUser.isPresent()) { // username user varmı
-				
-				User user = existUser.get();
-				user.setName(dto.getName());
-				user.setSurname(dto.getSurname());
-				user.setUsername(dto.getUsername());
-				user.setPassword(dto.getPassword());
-				user.setEmail(dto.getEmail());
-				
-				Optional<User> updateUser = userRepository.save(user); //bilgiler kaydedildi
-				
-				responseDto.setName(updateUser.get().getName());
-				responseDto.setSurname(updateUser.get().getSurname());
-				responseDto.setUsername(updateUser.get().getUsername());
-				
-				System.out.println(updateUser.get().getUsername() + " başarıyla güncellendi.");
-			}
-			else {
-				System.out.println("Service Güncellenmek istenen User bulunamadı.");
-			}
-		}catch (Exception e) {
-			System.out.println("Service User güncellenirken hata oluştu: " + e.getMessage());
+	//userupdaterequestdt acılacak
+	public Optional<UserResponseDto> update(UserUpdateRequestDto dto) {
+		Optional<User> existingUser = userRepository.findById(dto.getUserId());
+		if (existingUser.isPresent()) {
+			User user = existingUser.get();
+			user.setEmail(dto.getEmail());
+			user.setUsername(dto.getUsername());
+			user.setPassword(dto.getPassword());
 			
+			Optional<User> updatedUser = userRepository.update(user);
+			
+			if (updatedUser.isPresent()) {
+				UserResponseDto responseDto = new UserResponseDto();
+				responseDto.setName(updatedUser.get().getName());
+				responseDto.setSurname(updatedUser.get().getSurname());
+				responseDto.setUsername(updatedUser.get().getUsername());
+				return Optional.of(responseDto);
+			}
 		}
-		return Optional.of(responseDto);
+		return Optional.empty();
 	}
-	
 	
 	public void delete(Long id) {
 		Optional<User> mevcutUser = findById(id);
@@ -91,12 +82,22 @@ public class UserService {
 	}
 	
 	
-	public List<User> findAll() {
+	public List<UserResponseDto> findAll() {
+		UserResponseDto responseDto = new UserResponseDto();
 		List<User> userList = userRepository.findAll();
 		if (userList.isEmpty()) {
 			System.out.println("Service Veritabanında kayıtlı User bulunmamaktadır.");
 		}
-		return userList;
+		
+		List<UserResponseDto> responseDtoList = new ArrayList<>();
+		for (User user : userList) {
+			
+			responseDto.setName(user.getName());
+			responseDto.setSurname(user.getSurname());
+			responseDto.setUsername(user.getUsername());
+			responseDtoList.add(responseDto);
+		}
+		return responseDtoList;
 	}
 	
 	

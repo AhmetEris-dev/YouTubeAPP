@@ -4,8 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="Entity package oluşturuldu">
+    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/LikeSaveRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/UserUpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/VideoUpdateRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/VideoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/VideoSaveRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/VideoSaveRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/VideoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/VideoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/VideoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/utility/DatabaseSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/utility/DatabaseSchema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,15 +43,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/AhmetEris-dev/YouTubeAPP.git",
-    "accountId": "b63e95f3-2ff7-4529-9e85-2e95b635393f"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AhmetEris-dev&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/AhmetEris-dev/YouTubeAPP.git&quot;,
+    &quot;accountId&quot;: &quot;b63e95f3-2ff7-4529-9e85-2e95b635393f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2ly6bKeVHCweWmK6ypdmFD9Vqcu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -50,6 +72,7 @@
   "keyToString": {
     "Application.Runner.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/intellij/13_JDBC/JdbcUsage",
@@ -103,7 +126,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726140040822</updated>
-      <workItem from="1726140042044" duration="3059000" />
+      <workItem from="1726140042044" duration="30850000" />
+      <workItem from="1726175205696" duration="13000" />
+      <workItem from="1726223599158" duration="15553000" />
     </task>
     <task id="LOCAL-00001" summary="Entity package oluşturuldu">
       <option name="closed" value="true" />
@@ -113,7 +138,63 @@
       <option name="project" value="LOCAL" />
       <updated>1726143012247</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="repository package oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726150020786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726150020786</updated>
+    </task>
+    <task id="LOCAL-00003" summary="repository package'ında düzenlemeler yapıldı">
+      <option name="closed" value="true" />
+      <created>1726150477824</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726150477824</updated>
+    </task>
+    <task id="LOCAL-00004" summary="repository package'ında düzenlemeler yapıldı">
+      <option name="closed" value="true" />
+      <created>1726151180448</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726151180448</updated>
+    </task>
+    <task id="LOCAL-00005" summary="service package'ı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726157698303</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726157698303</updated>
+    </task>
+    <task id="LOCAL-00006" summary="service package'ı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726157992285</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726157992285</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Controller package'ı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726160076964</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726160076964</updated>
+    </task>
+    <task id="LOCAL-00008" summary="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı">
+      <option name="closed" value="true" />
+      <created>1726174146410</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726174146410</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +202,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Entity package oluşturuldu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Entity package oluşturuldu" />
+    <MESSAGE value="repository package oluşturuldu" />
+    <MESSAGE value="repository package'ında düzenlemeler yapıldı" />
+    <MESSAGE value="service package'ı oluşturuldu" />
+    <MESSAGE value="Controller package'ı oluşturuldu" />
+    <MESSAGE value="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı" />
+    <option name="LAST_COMMIT_MESSAGE" value="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı" />
   </component>
 </project>

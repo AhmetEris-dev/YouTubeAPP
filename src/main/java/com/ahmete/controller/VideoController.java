@@ -1,6 +1,7 @@
 package com.ahmete.controller;
 
 import com.ahmete.dto.request.VideoSaveRequestDto;
+import com.ahmete.dto.request.VideoUpdateRequestDto;
 import com.ahmete.dto.response.VideoResponseDto;
 import com.ahmete.entity.Video;
 import com.ahmete.service.VideoService;
@@ -17,23 +18,26 @@ public class VideoController {
 	
 	public Optional<VideoResponseDto> save(VideoSaveRequestDto dto) {
 		try {
-			videoService.save(dto);
 			System.out.println("Controller Video başarıyla kaydedildi.");
+			return videoService.save(dto);
+			
 		} catch (Exception e) {
 			System.out.println("Controller Video kaydedilirken hata oluştu: " + e.getMessage());
 		}
 		return Optional.empty();
 	}
 	
-//	public Optional<Video> update(Video video) {
-//		try {
-//			videoService.update(video);
-//			System.out.println("Controller Video başarıyla güncellendi.");
-//		} catch (Exception e) {
-//			System.out.println("Controller Video güncellenirken hata oluştu: " + e.getMessage());
-//		}
-//		return Optional.ofNullable(video);
-//	}
+	public Optional<VideoResponseDto> update(VideoUpdateRequestDto dto) {
+		try {
+			
+			System.out.println("Controller Video başarıyla güncellendi.");
+			return videoService.update(dto);
+			
+		} catch (Exception e) {
+			System.out.println("Controller Video güncellenirken hata oluştu: " + e.getMessage());
+		}
+		return Optional.empty();
+	}
 	
 	public void delete(Long id) {
 		try {
@@ -44,8 +48,8 @@ public class VideoController {
 		}
 	}
 	
-	public List<Video> findAll() {
-		List<Video> videoList = videoService.findAll();
+	public List<VideoResponseDto> findAll() {
+		List<VideoResponseDto> videoList = videoService.findAll();
 		if (videoList.isEmpty()) {
 			System.out.println("Controller Veritabanında kayıtlı Video bulunmamaktadır.");
 		}

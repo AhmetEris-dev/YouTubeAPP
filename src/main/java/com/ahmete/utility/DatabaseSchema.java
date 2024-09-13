@@ -31,10 +31,10 @@ public class DatabaseSchema {
         String createVideoTable = "CREATE TABLE IF NOT EXISTS tbl_video (" +
                 "id BIGSERIAL PRIMARY KEY, " + // PostgreSQL'de BIGSERIAL kullanılır
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id) , " +
-                "tittle varchar(255), " +
+                "title varchar(255), " +
                 "description varchar(255) , " +
                 "uploadDate Date, " +
-                "status INTEGER DEFAULT 1, " +
+                "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +
                 ");";

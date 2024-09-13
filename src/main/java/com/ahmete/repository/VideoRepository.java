@@ -23,11 +23,12 @@ public class VideoRepository implements ICrud<Video> {
 	
 	@Override
 	public Optional<Video> save(Video video) {
-		sql = "INSERT INTO tbl_video (user_id, title, description) VALUES (?, ?, ?)";
+		sql = "INSERT INTO tbl_video (user_id, title, description, uploadDate) VALUES (?, ?, ?, ?)";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setLong(1, video.getUserId());
 			preparedStatement.setString(2, video.getTitle());
 			preparedStatement.setString(3, video.getDescription());
+			preparedStatement.setObject(4, video.getUploadDate());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Repository: Video kaydedilirken hata oluştu: " + e.getMessage());
@@ -38,11 +39,12 @@ public class VideoRepository implements ICrud<Video> {
 	
 	@Override
 	public Optional<Video> update(Video video) {
-		sql = "UPDATE tbl_video SET  title = ?, description = ? WHERE id = ?";
+		sql = "UPDATE tbl_video SET  title = ?, description = ?, uploadDate = ?  WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setString(1, video.getTitle());
 			preparedStatement.setString(2, video.getDescription());
-			preparedStatement.setLong(3, video.getId());
+			preparedStatement.setObject(3, video.getUploadDate());
+			preparedStatement.setLong(4, video.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows == 0) {
 				System.err.println("Repository: Video güncellenirken hata oluştu: Güncelleme başarısız.");
@@ -87,7 +89,7 @@ public class VideoRepository implements ICrud<Video> {
 			preparedStatement.setLong(1, id);
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
-				return Optional.of(getValueFromResultSet(resultSet));
+					return Optional.of(getValueFromResultSet(resultSet));
 				}
 			}
 		} catch (SQLException e) {
@@ -101,7 +103,7 @@ public class VideoRepository implements ICrud<Video> {
 		Long userId = resultSet.getLong("user_id");
 		String title = resultSet.getString("title");
 		String description = resultSet.getString("description");
-		String uploadDate = resultSet.getString("upload_date");
+		String uploadDate = resultSet.getString("uploadDate");
 		Integer state = resultSet.getInt("state");
 		Long createat = resultSet.getLong("createat");
 		Long updateat= resultSet.getLong("updateat");
