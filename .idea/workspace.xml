@@ -4,20 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/LikeSaveRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/UserUpdateRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/VideoUpdateRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="düzenlemeler yapıldı,metotlar test edildi">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentSaveRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentUpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/LikeUpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/response/CommentResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/response/LikeResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/UserGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/LikeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/VideoSaveRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/VideoSaveRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/UserUpdateRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/UserUpdateRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Like.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/CommentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/VideoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/VideoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/VideoService.java" afterDir="false" />
@@ -129,6 +138,10 @@
       <workItem from="1726140042044" duration="30850000" />
       <workItem from="1726175205696" duration="13000" />
       <workItem from="1726223599158" duration="15553000" />
+      <workItem from="1726240448790" duration="534000" />
+      <workItem from="1726326812560" duration="1537000" />
+      <workItem from="1726334579171" duration="11383000" />
+      <workItem from="1726409045382" duration="8208000" />
     </task>
     <task id="LOCAL-00001" summary="Entity package oluşturuldu">
       <option name="closed" value="true" />
@@ -194,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726174146410</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="düzenlemeler yapıldı,metotlar test edildi">
+      <option name="closed" value="true" />
+      <created>1726240481959</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726240481959</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +228,7 @@
     <MESSAGE value="service package'ı oluşturuldu" />
     <MESSAGE value="Controller package'ı oluşturuldu" />
     <MESSAGE value="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı" />
-    <option name="LAST_COMMIT_MESSAGE" value="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı" />
+    <MESSAGE value="düzenlemeler yapıldı,metotlar test edildi" />
+    <option name="LAST_COMMIT_MESSAGE" value="düzenlemeler yapıldı,metotlar test edildi" />
   </component>
 </project>

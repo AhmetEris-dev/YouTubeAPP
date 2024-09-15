@@ -35,11 +35,12 @@ public class LikeRepository implements ICrud<Like> {
 	
 	@Override
 	public Optional<Like> update(Like like) {
-		sql = "UPDATE tbl_like SET user_id = ?, video_id = ? WHERE id = ?";
+		sql = "UPDATE tbl_like SET user_id = ?, video_id = ?, status = ? WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setLong(1, like.getUserId());
 			preparedStatement.setLong(2, like.getVideoId());
-			preparedStatement.setLong(3, like.getId());
+			preparedStatement.setInt(3, like.getStatus());
+			preparedStatement.setLong(4, like.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows > 0) {
 				System.out.println("Güncelleme Başarılı!");
@@ -110,33 +111,4 @@ public class LikeRepository implements ICrud<Like> {
 		return new Like(id, userId, videoId, state, createat, updateat);
 	}
 	
-	public Optional<String> findUsernameByUserId(Long userId) {
-		sql = "SELECT username FROM tbl_user WHERE id = ?";
-		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
-			preparedStatement.setLong(1, userId);
-			try (ResultSet resultSet = preparedStatement.executeQuery()) {
-				if (resultSet.next()) {
-					return Optional.of(resultSet.getString("username"));
-				}
-			}
-		} catch (SQLException e) {
-			System.err.println("Repository: Username bulunurken hata oluştu: " + e.getMessage());
-		}
-		return Optional.empty();
-	}
-	
-	public Optional<String> findVideoTitleByVideoId(Long videoId) {
-		sql = "SELECT title FROM tbl_video WHERE id = ?";
-		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
-			preparedStatement.setLong(1, videoId);
-			try (ResultSet resultSet = preparedStatement.executeQuery()) {
-				if (resultSet.next()) {
-					return Optional.of(resultSet.getString("title"));
-				}
-			}
-		} catch (SQLException e) {
-			System.err.println("Repository: Video title bulunurken hata oluştu: " + e.getMessage());
-		}
-		return Optional.empty();
-	}
 }

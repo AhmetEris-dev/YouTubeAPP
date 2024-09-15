@@ -7,11 +7,6 @@ public class UserUpdateRequestDto {
 	private String password;
 	private Long userId;
 	
-	public UserUpdateRequestDto(String email, String username, String password) {
-		this.email = email;
-		this.username = username;
-		this.password = password;
-	}
 	
 	public UserUpdateRequestDto(String email, String username, String password, Long userId) {
 		this.email = email;

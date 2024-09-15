@@ -1,5 +1,8 @@
 package com.ahmete.controller;
 
+import com.ahmete.dto.request.CommentSaveRequestDto;
+import com.ahmete.dto.request.CommentUpdateRequestDto;
+import com.ahmete.dto.response.CommentResponseDto;
 import com.ahmete.entity.Comment;
 import com.ahmete.entity.Like;
 import com.ahmete.service.CommentService;
@@ -14,24 +17,24 @@ public class CommentController {
 		this.commentService = new CommentService();
 	}
 	
-	public Optional<Comment> save(Comment comment) {
+	public Optional<CommentResponseDto> save(CommentSaveRequestDto dto) {
 		try {
-			commentService.save(comment);
+			commentService.save(dto);
 			System.out.println("Controller Comment başarıyla kaydedildi.");
 		} catch (Exception e) {
 			System.out.println("Controller Comment kaydedilirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(comment);
+		return Optional.empty();
 	}
 	
-	public Optional<Comment> update(Comment comment) {
+	public Optional<CommentResponseDto> update(CommentUpdateRequestDto dto) {
 		try {
-			commentService.update(comment);
+			commentService.update(dto);
 			System.out.println("Controller Comment başarıyla güncellendi.");
 		} catch (Exception e) {
 			System.out.println("Controller Comment güncellenirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(comment);
+	return Optional.empty();
 	}
 	
 	public void delete(Long id) {

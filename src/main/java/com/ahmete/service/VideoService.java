@@ -49,7 +49,7 @@ public class VideoService {
 	
 	
 	public Optional<VideoResponseDto> update(VideoUpdateRequestDto dto) {
-		//TODO HATA DÜZELTİLECEK !!!!!!!!!!!!!! FTS !!!!!!!!!!!
+		
 		try {
 			Optional<Video> byTitle = videoRepository.findById(dto.getVideoId());
 			if (byTitle.isPresent()) {
@@ -73,6 +73,7 @@ public class VideoService {
 			}
 		}catch (Exception e) {
 			System.out.println("Service Video güncellenirken hata oluştu: " + e.getMessage());
+			e.printStackTrace();
 
 		}
 		return Optional.empty();
@@ -80,17 +81,18 @@ public class VideoService {
 	
 	
 	public void delete(Long id) {
-		Optional<Video> mevcutVideo = findById(id);
-		if (mevcutVideo.isPresent()) {
-			try {
-				videoRepository.delete(id);
-				System.out.println("Service Video başarıyla silindi.");
-			} catch (Exception e) {
-				System.out.println("Service Video silinirken hata oluştu: " + e.getMessage());
-			}
-		} else {
-			System.out.println("Service Silinmek istenen Video bulunamadı.");
-		}
+		videoRepository.delete(id);
+//		Optional<Video> mevcutVideo = findById(id);
+//		if (mevcutVideo.isPresent()) {
+//			try {
+//				videoRepository.delete(id);
+//				System.out.println("Service Video başarıyla silindi.");
+//			} catch (Exception e) {
+//				System.out.println("Service Video silinirken hata oluştu: " + e.getMessage());
+//			}
+//		} else {
+//			System.out.println("Service Silinmek istenen Video bulunamadı.");
+//		}
 	}
 	
 	

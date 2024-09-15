@@ -4,16 +4,23 @@ import com.ahmete.dto.request.UserSaveRequestDto;
 import com.ahmete.dto.request.UserUpdateRequestDto;
 import com.ahmete.dto.response.UserResponseDto;
 import com.ahmete.entity.User;
+import com.ahmete.gui.UserGUI;
+import com.ahmete.repository.UserRepository;
 import com.ahmete.service.UserService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class UserController {
 	private final UserService userService;
+	private final UserRepository userRepository;
+	public static User girisYapanKullanici;
 	
 	public UserController() {
 		this.userService = new UserService();
+		this.userRepository = new UserRepository();
+		
 	}
 	
 	public Optional<UserResponseDto> save(UserSaveRequestDto dto) {
@@ -62,5 +69,65 @@ public class UserController {
 				() -> System.out.println("Controller Böyle bir User bulunamadı.")
 		);
 		return userOptional;
+	}
+	
+	public void register() {
+		Scanner scanner = new Scanner(System.in);
+		
+		String username;
+		boolean isRegisteredUser;
+		String name,surname,email;
+		
+		do {
+			System.out.print("Adınızı giriniz: ");
+			name = scanner.nextLine();
+			
+			System.out.print("Soyadınızı giriniz: ");
+			surname = scanner.nextLine();
+			
+			System.out.print("Emaili giriniz");
+			email = scanner.nextLine();
+			
+			System.out.print("Username giriniz: ");
+			username = scanner.nextLine();
+			
+			isRegisteredUser = !userRepository.existsByUserName(username);
+			if (!isRegisteredUser) {
+				System.out.println("Bu username zaten alınmış, lütfen başka bir username deneyin.");
+			}
+			
+		} while (!isRegisteredUser);
+		
+		System.out.print("Password giriniz: ");
+		String password = scanner.nextLine();
+		
+		User user = new User(name, surname,email, username, password);
+		userRepository.save(user);
+		System.out.println("Kayıt başarıyla tamamlandı!");
+	}
+	
+	public void login() {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("Username giriniz: ");
+		String username = scanner.nextLine();
+		
+		System.out.print("Password giriniz: ");
+		String password = scanner.nextLine();
+		
+		Optional<User> user = userRepository.doLogin(username, password);
+		
+		if (user.isPresent()) {
+			UserGUI.girisYapanKullanici=user.get(); //girisbasarılı ise kullanıcıyı sakladık
+			System.out.println("Giriş başarılı! Hoşgeldin, " + user.get().getName() +" "+ user.get().getSurname()+ "!");
+			//burada giriş yapan user'a her yerden erişebilmeli
+			
+		} else {
+			System.out.println("Giriş bilgileri hatalı!");
+		}
+	}
+	
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
 	}
 }

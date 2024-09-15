@@ -1,40 +1,39 @@
 package com.ahmete.entity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 public class Video extends BaseEntity{
 	private Long id;
 	private Long userId;
 	private String title;
 	private String description;
-	private LocalDateTime uploadDate=LocalDateTime.now(); // daha sonra kullanacagın zaman Long olarak tut
+
 	
 	public Video() {
 	}
 	
-	public Video(Long userId, String title, String description, LocalDateTime uploadDate) {
+	public Video(Long userId, String title, String description) {
 		this.userId = userId;
 		this.title = title;
 		this.description = description;
-		this.uploadDate = uploadDate;
+		
 	}
 	
-	public Video(Long id, Long userId, String title, String description, LocalDateTime uploadDate) {
+	public Video(Long id, Long userId, String title, String description) {
 		this.id = id;
 		this.userId = userId;
 		this.title = title;
 		this.description = description;
-		this.uploadDate = uploadDate;
+	
 	}
 	
-	public Video( Long id, Long userId, String title, String description, LocalDateTime uploadDate,Integer state, Long createat, Long updateat) {
+	public Video( Long id, Long userId, String title, String description,Integer state, Long createat, Long updateat) {
 		super(state, createat, updateat);
 		this.id = id;
 		this.userId = userId;
 		this.title = title;
 		this.description = description;
-		this.uploadDate = uploadDate;
+	
 	}
 	
 	public Long getId() {
@@ -69,16 +68,9 @@ public class Video extends BaseEntity{
 		this.description = description;
 	}
 	
-	public LocalDateTime getUploadDate() {
-		return uploadDate;
-	}
-	
-	public void setUploadDate(LocalDateTime uploadDate) {
-		this.uploadDate = uploadDate;
-	}
 	
 	@Override
 	public String toString() {
-		return "Video{" + "id=" + getId() + ", userId=" + getUserId() + ", title='" + getTitle() + '\'' + ", description='" + getDescription() + '\'' + ", uploadDate=" + getUploadDate() + ", state=" + getState() + ", createat=" + getCreateat() + ", updateat=" + getUpdateat() + '}';
+		return "Video{" + "id=" + getId() + ", userId=" + getUserId() + ", title='" + getTitle() + '\'' + ", description='" + getDescription() + '\'' + ", state=" + getState() + ", createat=" + getCreateat() + ", updateat=" + getUpdateat() + '}';
 	}
 }

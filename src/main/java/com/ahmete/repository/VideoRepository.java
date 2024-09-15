@@ -8,7 +8,6 @@ import com.ahmete.utility.ICrud;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,12 +22,11 @@ public class VideoRepository implements ICrud<Video> {
 	
 	@Override
 	public Optional<Video> save(Video video) {
-		sql = "INSERT INTO tbl_video (user_id, title, description, uploadDate) VALUES (?, ?, ?, ?)";
+		sql = "INSERT INTO tbl_video (user_id, title, description) VALUES (?, ?, ?)";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setLong(1, video.getUserId());
 			preparedStatement.setString(2, video.getTitle());
 			preparedStatement.setString(3, video.getDescription());
-			preparedStatement.setObject(4, video.getUploadDate());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Repository: Video kaydedilirken hata oluştu: " + e.getMessage());
@@ -39,12 +37,11 @@ public class VideoRepository implements ICrud<Video> {
 	
 	@Override
 	public Optional<Video> update(Video video) {
-		sql = "UPDATE tbl_video SET  title = ?, description = ?, uploadDate = ?  WHERE id = ?";
+		sql = "UPDATE tbl_video SET  title = ?, description = ?  WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setString(1, video.getTitle());
 			preparedStatement.setString(2, video.getDescription());
-			preparedStatement.setObject(3, video.getUploadDate());
-			preparedStatement.setLong(4, video.getId());
+			preparedStatement.setLong(3, video.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows == 0) {
 				System.err.println("Repository: Video güncellenirken hata oluştu: Güncelleme başarısız.");
@@ -68,7 +65,7 @@ public class VideoRepository implements ICrud<Video> {
 	
 	@Override
 	public List<Video> findAll() {
-		sql = "SELECT * FROM tlb_video";
+		sql = "SELECT * FROM tbl_video";
 		List<Video> videoList = new ArrayList<>();
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql);
 		     ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -103,16 +100,15 @@ public class VideoRepository implements ICrud<Video> {
 		Long userId = resultSet.getLong("user_id");
 		String title = resultSet.getString("title");
 		String description = resultSet.getString("description");
-		String uploadDate = resultSet.getString("uploadDate");
 		Integer state = resultSet.getInt("state");
 		Long createat = resultSet.getLong("createat");
 		Long updateat= resultSet.getLong("updateat");
 		
-		return new Video(id, userId, title, description, LocalDateTime.parse(uploadDate), state, createat, updateat);
+		return new Video(id, userId, title, description, state, createat, updateat);
 	}
 	
 	public Optional<Video> findByTitle(String videoTitle) {
-		sql = "SELECT * FROM tbl_video WHERE isim = ?";
+		sql = "SELECT * FROM tbl_video WHERE title = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setString(1, videoTitle);
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -124,5 +120,25 @@ public class VideoRepository implements ICrud<Video> {
 			throw new RuntimeException(e);
 		}
 		return Optional.empty();
+	}
+	
+	public List<Video> findByUserId(Long userId) {
+		 sql = "SELECT * FROM tbl_video WHERE user_id = ?";
+		List<Video> videoList = new ArrayList<>();
+		
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setLong(1, userId);
+			
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				while (resultSet.next()) {
+					videoList.add(getValueFromResultSet(resultSet));
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Kullanıcıya ait postlar getirilirken bir hata oluştu... " + e.getMessage());
+			throw new RuntimeException(e);
+		}
+		
+		return videoList;
 	}
 }

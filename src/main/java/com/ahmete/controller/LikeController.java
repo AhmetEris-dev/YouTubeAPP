@@ -1,5 +1,8 @@
 package com.ahmete.controller;
 
+import com.ahmete.dto.request.LikeSaveRequestDto;
+import com.ahmete.dto.request.LikeUpdateRequestDto;
+import com.ahmete.dto.response.LikeResponseDto;
 import com.ahmete.entity.Like;
 import com.ahmete.service.LikeService;
 
@@ -13,24 +16,24 @@ public class LikeController {
 		likeService = new LikeService();
 	}
 	
-	public Optional<Like> save(Like like) {
+	public Optional<LikeResponseDto> save(LikeSaveRequestDto dto) {
 		try {
-			likeService.save(like);
+			likeService.save(dto);
 			System.out.println("Controller Like başarıyla kaydedildi.");
 		} catch (Exception e) {
 			System.out.println("Controller Like kaydedilirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(like);
+		return Optional.empty();
 	}
 	
-	public Optional<Like> update(Like like) {
+	public Optional<LikeResponseDto> update(LikeUpdateRequestDto dto) {
 		try {
-			likeService.update(like);
-			System.out.println("Controller Takım başarıyla güncellendi.");
+			likeService.update(dto);
+			System.out.println("Controller Like başarıyla güncellendi.");
 		} catch (Exception e) {
-			System.out.println("Controller Takım güncellenirken hata oluştu: " + e.getMessage());
+			System.out.println("Controller Like güncellenirken hata oluştu: " + e.getMessage());
 		}
-		return Optional.ofNullable(like);
+		return Optional.empty();
 	}
 	
 	public void delete(Long id) {

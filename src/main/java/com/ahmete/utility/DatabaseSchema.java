@@ -33,7 +33,6 @@ public class DatabaseSchema {
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id) , " +
                 "title varchar(255), " +
                 "description varchar(255) , " +
-                "uploadDate Date, " +
                 "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +
@@ -43,6 +42,7 @@ public class DatabaseSchema {
                 "id BIGSERIAL PRIMARY KEY,"+
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id), " +
                 "video_id BIGINT NOT NULL REFERENCES tbl_video(id), " +
+                "status INTEGER DEFAULT 0, " +
                 "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +
@@ -52,6 +52,7 @@ public class DatabaseSchema {
                 "id BIGSERIAL PRIMARY KEY,"+
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id), " +
                 "video_id BIGINT NOT NULL REFERENCES tbl_video(id), " +
+                "status INTEGER DEFAULT 0, " +
                 "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +

@@ -38,7 +38,7 @@ public class User extends BaseEntity {
 		this.password = password;
 	}
 	
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 	

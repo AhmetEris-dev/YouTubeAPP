@@ -36,11 +36,12 @@ public class CommentRepository implements ICrud<Comment> {
 	
 	@Override
 	public Optional<Comment> update(Comment comment) {
-		sql = "UPDATE tbl_comment SET user_id = ?, video_id = ? WHERE id = ?";
+		sql = "UPDATE tbl_comment SET user_id = ?, video_id = ?, status = ? WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setLong(1, comment.getUserId());
 			preparedStatement.setLong(2, comment.getVideoId());
-			preparedStatement.setLong(3, comment.getId());
+			preparedStatement.setInt(3, comment.getStatus());
+			preparedStatement.setLong(4, comment.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows > 0) {
 				System.out.println("Güncelleme Başarılı!");
