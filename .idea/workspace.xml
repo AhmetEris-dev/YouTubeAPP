@@ -4,33 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="düzenlemeler yapıldı,metotlar test edildi">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentSaveRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentUpdateRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/LikeUpdateRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/response/CommentResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/response/LikeResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/UserGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" afterDir="false" />
+    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/LikeGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/LikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/UserUpdateRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/UserUpdateRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Like.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/YoutubeApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/VideoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/VideoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/utility/DatabaseSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/utility/DatabaseSchema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +61,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Runner.executor": "Run",
+    "Application.YoutubeApp.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -100,8 +82,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ahmete.Runner" />
+    <configuration name="YoutubeApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ahmete.YoutubeApp" />
       <module name="YoutubeApp.main" />
       <extension name="coverage">
         <pattern>
@@ -115,7 +97,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Runner" />
+        <item itemvalue="Application.YoutubeApp" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +123,8 @@
       <workItem from="1726240448790" duration="534000" />
       <workItem from="1726326812560" duration="1537000" />
       <workItem from="1726334579171" duration="11383000" />
-      <workItem from="1726409045382" duration="8208000" />
+      <workItem from="1726409045382" duration="9833000" />
+      <workItem from="1726466795939" duration="8021000" />
     </task>
     <task id="LOCAL-00001" summary="Entity package oluşturuldu">
       <option name="closed" value="true" />
@@ -215,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726240481959</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726419110531</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726419110531</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +220,7 @@
     <MESSAGE value="Controller package'ı oluşturuldu" />
     <MESSAGE value="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı" />
     <MESSAGE value="düzenlemeler yapıldı,metotlar test edildi" />
-    <option name="LAST_COMMIT_MESSAGE" value="düzenlemeler yapıldı,metotlar test edildi" />
+    <MESSAGE value="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu" />
+    <option name="LAST_COMMIT_MESSAGE" value="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu" />
   </component>
 </project>

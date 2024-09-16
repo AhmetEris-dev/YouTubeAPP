@@ -6,6 +6,18 @@ like entity
 videoGUI
 userGUI
 
+Login olmadan videolar arasında gezinebilecekmiş.
+Ama bir videoya beğenmek veya yorum yapmak için mutlaka login olmalı.
+
+Video -> Login -> Video redirecting.
+
+Yorumlar düzenlebilir.
+Silme işlemleri soft-delete olarak yapılmalı.
+Dto'lar kullanılacak.
+
+Kullanıcı profili buna bir model oluşturarak tutun.
+Bir profile girildiğinde o profilin videolarını (List<Video>), user bilgilerini vs. hepsini çekip tek bir sayfada görüntüleyebilrsin.
+
 
 Alperen hocaya
 public Optional<Like> save(Like like) {

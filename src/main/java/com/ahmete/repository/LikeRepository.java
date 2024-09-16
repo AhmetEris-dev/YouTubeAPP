@@ -111,4 +111,5 @@ public class LikeRepository implements ICrud<Like> {
 		return new Like(id, userId, videoId, state, createat, updateat);
 	}
 	
+	
 }

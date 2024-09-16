@@ -33,10 +33,12 @@ public class VideoGUI {
 			int secim = scanner.nextInt();scanner.nextLine();
 			
 			switch (secim){
-				case 1:{
+				case 1:
 					viewAllVideos();
+					LikeGUI likegui = new LikeGUI();
+					likegui.likeMenu();
 					break;
-				}
+					
 				case 2:{
 					shareVideo();
 					break;

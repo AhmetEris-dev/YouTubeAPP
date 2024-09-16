@@ -81,10 +81,6 @@ public class LikeService {
 					like.setStatus(2);
 					System.out.println("Dislike atıldı.");
 				}
-				else if (dto.getStatus()==3) {
-					like.setStatus(3);
-					System.out.println("Like soft delete atıldı.");
-				}
 				else {
 					System.out.println("Geçersiz işlem.");
 					return Optional.empty();
@@ -142,5 +138,63 @@ public class LikeService {
 		return likeOptional;
 	}
 	
+	public String likeAt(String videoTitle) {
+		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
+		
+		if (videoOpt.isPresent()) {
+			Video video = videoOpt.get();
+			Optional<Like> likeOpt = likeRepository.findById(video.getId());
+			
+			if (likeOpt.isPresent()) {
+				Like like = likeOpt.get();
+				like.setStatus(1);
+				likeRepository.update(like);
+				return "Video başlığına göre like atıldı.";
+			} else {
+				return "Video için like bulunamadı.";
+			}
+		} else {
+			return "Video başlığı ile video bulunamadı.";
+		}
+	}
 	
+	public String dissLikeAt(String videoTitle) {
+		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
+		
+		if (videoOpt.isPresent()) {
+			Video video = videoOpt.get();
+			Optional<Like> likeOpt = likeRepository.findById(video.getId());
+			
+			if (likeOpt.isPresent()) {
+				Like like = likeOpt.get();
+				like.setStatus(2);
+				likeRepository.update(like);
+				return "Video başlığına göre diss like atıldı.";
+			} else {
+				return "Video için diss like bulunamadı.";
+			}
+		} else {
+			return "Video başlığı ile video bulunamadı.";
+		}
+	}
+	
+	public String likeGeriCek(String videoTitle) {
+		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
+		
+		if (videoOpt.isPresent()) {
+			Video video = videoOpt.get();
+			Optional<Like> likeOpt = likeRepository.findById(video.getId());
+			
+			if (likeOpt.isPresent()) {
+				Like like = likeOpt.get();
+				like.setStatus(0);
+				likeRepository.update(like);
+				return "Video başlığına göre like'ı geri cek atıldı.";
+			} else {
+				return "Video için like bulunamadı.";
+			}
+		} else {
+			return "Video başlığı ile video bulunamadı.";
+		}
+	}
 }
