@@ -9,9 +9,11 @@ import com.ahmete.service.CommentService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class CommentController {
 	private final CommentService commentService;
+	private final Scanner scanner=new Scanner(System.in);
 	
 	public CommentController() {
 		this.commentService = new CommentService();
@@ -61,5 +63,63 @@ public class CommentController {
 				() -> System.out.println("Controller Böyle bir Comment bulunamadı.")
 		);
 		return commentOptional;
+	}
+	
+	public void removeComment() {
+		System.out.print("Silmek istediğiniz video başlığını girin: ");
+		String videoTitle = scanner.nextLine();
+		
+		String sonuc = commentService.removeComment(videoTitle);
+		System.out.println(sonuc);
+	}
+	
+	public void addComment() {
+		
+		System.out.print("Kullanıcı adınızı giriniz: ");
+		String username = scanner.nextLine();
+		
+		System.out.print("Yorum yapacağınız video başlığını giriniz: ");
+		String videoTitle = scanner.nextLine();
+		
+		System.out.print("Yorumunuzu giriniz: ");
+		String commentText = scanner.nextLine();
+		
+		
+		CommentSaveRequestDto dto = new CommentSaveRequestDto();
+		dto.setVideotitle(videoTitle);
+		dto.setCommentText(commentText);
+		dto.setUsername(username);
+		
+		Optional<CommentResponseDto> response = commentService.YorumAt(dto);
+		
+		if (response.isPresent()) {
+			CommentResponseDto commentResponse = response.get();
+			System.out.println("Yorum başarıyla eklendi!");
+			System.out.println("Kullanıcı: " + commentResponse.getUsername());
+			System.out.println("Video Başlığı: " + commentResponse.getVideotitle());
+			System.out.println("Yorum: " + commentResponse.getCommentText());
+		} else {
+			System.out.println("Yorum eklenirken bir hata oluştu. Lütfen bilgileri kontrol edin.");
+		}
+	}
+	//TODO DUZENLECEK !!!
+	public void editComment() {
+		System.out.print("Düzenleyeceğiniz video başlığını girin: ");
+		String videoTitle = scanner.nextLine();
+		
+		System.out.print("Yeni yorumu girin: ");
+		String newCommentText = scanner.nextLine();
+		
+		Optional<CommentResponseDto> result = commentService.editComment(videoTitle, newCommentText);
+		
+		if (result.isPresent()) {
+			CommentResponseDto commentResponse = result.get();
+			System.out.println("Yorum başarıyla güncellendi.");
+			System.out.println("Kullanıcı: " + commentResponse.getUsername());
+			System.out.println("Video Başlığı: " + commentResponse.getVideotitle());
+			System.out.println("Yeni Yorum: " + commentResponse.getCommentText());
+		} else {
+			System.out.println("Yorum güncellenirken bir sorun oluştu.");
+		}
 	}
 }

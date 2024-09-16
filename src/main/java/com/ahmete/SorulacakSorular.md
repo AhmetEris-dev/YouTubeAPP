@@ -2,6 +2,16 @@ video entity
 yorum entity
 kullanıcı entity
 video entity
+yorumcount
+likecount
+izlenmecount
+disslikecount
+
+user profil
+sabitlenmiş video
+populer videolar 5 adet list<video>
+tum videolar  list<video>
+video model
 like entity
 videoGUI
 userGUI

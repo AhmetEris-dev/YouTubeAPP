@@ -52,6 +52,7 @@ public class DatabaseSchema {
                 "id BIGSERIAL PRIMARY KEY,"+
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id), " +
                 "video_id BIGINT NOT NULL REFERENCES tbl_video(id), " +
+                "commenttext text DEFAULT 1, " +
                 "status INTEGER DEFAULT 0, " +
                 "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +

@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class UserController {
 	private final UserService userService;
 	private final UserRepository userRepository;
-	public static User girisYapanKullanici;
+	
 	
 	public UserController() {
 		this.userService = new UserService();

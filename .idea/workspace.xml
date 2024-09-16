@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="likeGUI sınıfı oluşturuldu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/CommentGUI.java" afterDir="false" />
+    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="CommentGUI sınıfı oluşturuldu">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/LikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/VideoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentSaveRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentSaveRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentUpdateRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/request/CommentUpdateRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/response/CommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/dto/response/CommentResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/CommentGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/CommentGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/LikeGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/LikeGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/utility/DatabaseSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/utility/DatabaseSchema.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +132,7 @@
       <workItem from="1726326812560" duration="1537000" />
       <workItem from="1726334579171" duration="11383000" />
       <workItem from="1726409045382" duration="9833000" />
-      <workItem from="1726466795939" duration="8580000" />
+      <workItem from="1726466795939" duration="16416000" />
     </task>
     <task id="LOCAL-00001" summary="Entity package oluşturuldu">
       <option name="closed" value="true" />
@@ -209,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726487311290</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="CommentGUI sınıfı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726488496364</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1726488496364</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +246,7 @@
     <MESSAGE value="düzenlemeler yapıldı,metotlar test edildi" />
     <MESSAGE value="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu" />
     <MESSAGE value="likeGUI sınıfı oluşturuldu" />
-    <option name="LAST_COMMIT_MESSAGE" value="likeGUI sınıfı oluşturuldu" />
+    <MESSAGE value="CommentGUI sınıfı oluşturuldu" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommentGUI sınıfı oluşturuldu" />
   </component>
 </project>

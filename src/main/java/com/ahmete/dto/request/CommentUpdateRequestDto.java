@@ -5,12 +5,23 @@ public class CommentUpdateRequestDto {
 	private Long userId;
 	private Long videoId;
 	private Integer status;
+	private String commentText;
 	
-	public CommentUpdateRequestDto(Long likeId, Long userId, Long videoId, Integer status) {
+	public CommentUpdateRequestDto(Long likeId, Long userId, Long videoId, Integer status, String commentText) {
 		this.likeId = likeId;
 		this.userId = userId;
 		this.videoId = videoId;
 		this.status = status;
+		this.commentText = commentText;
+		
+	}
+	
+	public String getCommentText() {
+		return commentText;
+	}
+	
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
 	}
 	
 	public Long getLikeId() {

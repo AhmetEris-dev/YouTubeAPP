@@ -1,6 +1,7 @@
 package com.ahmete.gui;
 
 import com.ahmete.controller.LikeController;
+import com.ahmete.controller.UserController;
 import com.ahmete.dto.request.LikeSaveRequestDto;
 import com.ahmete.repository.LikeRepository;
 import com.ahmete.service.LikeService;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 
 public class LikeGUI {
 	private static final Scanner scanner=new Scanner(System.in);
+	private final LikeController likeController=new LikeController();
 	private final LikeService likeService;
 	
 	public LikeGUI() {
@@ -28,19 +30,20 @@ public class LikeGUI {
 			
 			switch (secim) {
 				case 1:{
-					throwALike();
+					likeController.throwALike();
 					break;
 				}
 				case 2:{
-					throwADissLike();
+					likeController.throwADissLike();
 					break;
 				}
 				case 3:{
-					withDrawLike();
+					likeController.withDrawLike();
 					break;
 				}
 				case 0:{
 					System.out.println("Çıkış yapılıyor...");
+					return;
 				}
 				default:
 					System.out.println("Geçersiz seçenek, lütfen tekrar deneyin.");
@@ -49,28 +52,5 @@ public class LikeGUI {
 		}
 	}
 	
-	private void throwALike() {
-		
-		System.out.print("Beğeneceğiniz video başlığını girin: ");
-		String videoTitle = scanner.nextLine();
-		
-		String sonuc = likeService.likeAt(videoTitle);
-		System.out.println(sonuc);
-	}
 	
-	private void throwADissLike() {
-		System.out.print("Diss like atacağınız video başlığını girin: ");
-		String videoTitle = scanner.nextLine();
-		
-		String sonuc = likeService.dissLikeAt(videoTitle);
-		System.out.println(sonuc);
-	}
-	
-	private void withDrawLike() {
-		System.out.print("Diss like atacağınız video başlığını girin: ");
-		String videoTitle = scanner.nextLine();
-		
-		String sonuc = likeService.likeGeriCek(videoTitle);
-		System.out.println(sonuc);
-	}
 }

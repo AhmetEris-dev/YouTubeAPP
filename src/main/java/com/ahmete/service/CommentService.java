@@ -34,6 +34,7 @@ public class CommentService {
 			if (userOptional.isPresent() && videoOptional.isPresent()) {
 				comment.setUserId(userOptional.get().getId());
 				comment.setVideoId(videoOptional.get().getId());
+				comment.setCommentText(comment.getCommentText());
 				
 				commentOptional = commentRepository.save(comment);
 				
@@ -65,6 +66,7 @@ public class CommentService {
 				Comment comment = byId.get();
 				comment.setUserId(userService.findById(comment.getUserId()).get().getId());
 				comment.setVideoId(videoService.findById(comment.getVideoId()).get().getId());
+				comment.setCommentText(comment.getCommentText());
 				
 				if (dto.getStatus() == 0) {
 					comment.setStatus(0);
@@ -136,4 +138,93 @@ public class CommentService {
 		return commentOptional;
 	}
 	
+	public Optional<CommentResponseDto> YorumAt(CommentSaveRequestDto dto) {
+		Comment comment;
+		Optional<Comment> commentOptional;
+		CommentResponseDto commentResponseDto = new CommentResponseDto();
+		try {
+			Optional<Video> videoOptional = videoService.findByTitle(dto.getVideotitle());
+			Optional<User> userOptional = userService.findByUserName(dto.getUsername());
+			
+			if (videoOptional.isPresent() && userOptional.isPresent()) {
+				comment = new Comment();
+				comment.setUserId(userOptional.get().getId());
+				comment.setVideoId(videoOptional.get().getId());
+				comment.setCommentText(dto.getCommentText());
+				comment.setStatus(1);
+				
+				System.out.println("Comment Status (Before Save): " + comment.getStatus());
+				commentOptional = commentRepository.save(comment);
+				System.out.println("Comment Status (After Save): " + commentOptional.get().getStatus());
+				
+				if (commentOptional.isPresent()) {
+					Comment savedComment = commentOptional.get();
+					commentResponseDto.setUsername(userService.findById(savedComment.getUserId()).get().getUsername());
+					commentResponseDto.setVideotitle(videoService.findById(savedComment.getVideoId()).get().getTitle());
+					commentResponseDto.setCommentText(savedComment.getCommentText());
+					
+					System.out.println("Yorum başarıyla kaydedildi.");
+					return Optional.of(commentResponseDto);
+				} else {
+					System.out.println("Yorum kaydedilirken bir hata oluştu.");
+					return Optional.empty();
+				}
+			} else {
+				System.out.println("Video veya kullanıcı bulunamadı. Lütfen video başlığını ve kullanıcı adını kontrol edin.");
+				return Optional.empty();
+			}
+		} catch (Exception e) {
+			System.out.println("Service: Yorum kaydedilirken hata oluştu: " + e.getMessage());
+			return Optional.empty();
+		}
+	}
+	
+	public Optional<CommentResponseDto> editComment(String videoTitle, String newCommentText) {
+		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
+		
+		if (videoOpt.isPresent()) {
+			Video video = videoOpt.get();
+			
+			Optional<Comment> commentOpt = commentRepository.findByVideoId(video.getId());
+			
+			if (commentOpt.isPresent()) {
+				Comment comment = commentOpt.get();
+				comment.setCommentText(newCommentText);
+				
+				commentRepository.update(comment);
+				
+				CommentResponseDto commentResponseDto = new CommentResponseDto();
+				commentResponseDto.setUsername(userService.findById(comment.getUserId()).get().getUsername());
+				commentResponseDto.setVideotitle(videoService.findById(comment.getVideoId()).get().getTitle());
+				commentResponseDto.setCommentText(comment.getCommentText());
+				
+				return Optional.of(commentResponseDto);
+			} else {
+				System.out.println("Bu video için yorum bulunamadı.");
+				return Optional.empty();
+			}
+		} else {
+			System.out.println("Video başlığı ile video bulunamadı.");
+			return Optional.empty();
+		}
+	}
+	
+	public String removeComment(String videoTitle) {
+		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
+		
+		if (videoOpt.isPresent()) {
+			Video video = videoOpt.get();
+			Optional<Comment> commentOpt = commentRepository.findByVideoId(video.getId());
+			
+			if (commentOpt.isPresent()) {
+				Comment comment = commentOpt.get();
+				commentRepository.delete(comment.getId());
+				return "Yorum başarıyla silindi.";
+			} else {
+				return "Bu video için yorum bulunamadı.";
+			}
+		} else {
+			return "Video başlığı ile video bulunamadı.";
+		}
+	}
 }

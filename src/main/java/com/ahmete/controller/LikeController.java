@@ -8,9 +8,11 @@ import com.ahmete.service.LikeService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class LikeController {
 	private final LikeService likeService;
+	private final Scanner scanner=new Scanner(System.in);
 	
 	public LikeController() {
 		likeService = new LikeService();
@@ -60,5 +62,30 @@ public class LikeController {
 				() -> System.out.println("Controller Böyle bir Like bulunamadı.")
 		);
 		return likeOptional;
+	}
+	
+	public void throwALike() {
+		
+		System.out.print("Beğeneceğiniz video başlığını girin: ");
+		String videoTitle = scanner.nextLine();
+		
+		String sonuc = likeService.likeAt(videoTitle);
+		System.out.println(sonuc);
+	}
+	
+	public void throwADissLike() {
+		System.out.print("Diss like atacağınız video başlığını girin: ");
+		String videoTitle = scanner.nextLine();
+		
+		String sonuc = likeService.dissLikeAt(videoTitle);
+		System.out.println(sonuc);
+	}
+	
+	public void withDrawLike() {
+		System.out.print("Diss like atacağınız video başlığını girin: ");
+		String videoTitle = scanner.nextLine();
+		
+		String sonuc = likeService.likeGeriCek(videoTitle);
+		System.out.println(sonuc);
 	}
 }

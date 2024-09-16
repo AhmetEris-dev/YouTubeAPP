@@ -21,14 +21,16 @@ public class CommentRepository implements ICrud<Comment> {
 	
 	@Override
 	public Optional<Comment> save(Comment comment) {
-		sql = "INSERT INTO tbl_comment(user_id, video_id) VALUES(?, ?)";
+		sql = "INSERT INTO tbl_comment(user_id, video_id, commenttext, status) VALUES(?, ?, ?, ?)";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql);
 		) {
 			preparedStatement.setLong(1, comment.getUserId());
 			preparedStatement.setLong(2, comment.getVideoId());
+			preparedStatement.setString(3,comment.getCommentText());
+			preparedStatement.setInt(4, comment.getStatus());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			System.err.println("Comment: Comment verileri alınırken hata oluştu: " + e.getMessage());
 			
 		}
 		return Optional.ofNullable(comment);
@@ -36,12 +38,13 @@ public class CommentRepository implements ICrud<Comment> {
 	
 	@Override
 	public Optional<Comment> update(Comment comment) {
-		sql = "UPDATE tbl_comment SET user_id = ?, video_id = ?, status = ? WHERE id = ?";
+		sql = "UPDATE tbl_comment SET user_id = ?, video_id = ?, commenttext = ?, status = ? WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setLong(1, comment.getUserId());
 			preparedStatement.setLong(2, comment.getVideoId());
-			preparedStatement.setInt(3, comment.getStatus());
-			preparedStatement.setLong(4, comment.getId());
+			preparedStatement.setString(3, comment.getCommentText());
+			preparedStatement.setInt(4, comment.getStatus());
+			preparedStatement.setLong(5, comment.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows > 0) {
 				System.out.println("Güncelleme Başarılı!");
@@ -49,7 +52,7 @@ public class CommentRepository implements ICrud<Comment> {
 				System.out.println("Güncelleme Başarısız!");
 			}
 		} catch (SQLException e) {
-			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			System.err.println("Comment: Comment verileri alınırken hata oluştu: " + e.getMessage());
 			
 		}
 		return Optional.of(comment);
@@ -62,7 +65,7 @@ public class CommentRepository implements ICrud<Comment> {
 			preparedStatement.setLong(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			System.err.println("Comment: Comment verileri alınırken hata oluştu: " + e.getMessage());
 			
 		}
 	}
@@ -78,7 +81,7 @@ public class CommentRepository implements ICrud<Comment> {
 				commentList.add(getValueFromResultSet(resultSet));
 			}
 		} catch (SQLException e) {
-			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			System.err.println("Comment: Comment verileri alınırken hata oluştu: " + e.getMessage());
 			
 		}
 		return commentList;
@@ -97,7 +100,7 @@ public class CommentRepository implements ICrud<Comment> {
 				}
 			}
 		} catch (SQLException e) {
-			System.err.println("Comment: Like verileri alınırken hata oluştu: " + e.getMessage());
+			System.err.println("Comment: Comment verileri alınırken hata oluştu: " + e.getMessage());
 			
 		}
 		return Optional.empty();
@@ -107,10 +110,27 @@ public class CommentRepository implements ICrud<Comment> {
 		Long id = resultSet.getLong("id");
 		Long userId = resultSet.getLong("user_id");
 		Long videoId = resultSet.getLong("video_id");
+		String commentText = resultSet.getString("commenttext");
 		Integer state = resultSet.getInt("state");
 		Long createat = resultSet.getLong("createat");
 		Long updateat= resultSet.getLong("updateat");
 		
-		return new Comment(id, userId, videoId, state, createat, updateat);
+		return new Comment(id, userId, videoId,commentText, state, createat, updateat);
 	}
+	
+	public Optional<Comment> findByVideoId(Long videoId) {
+		sql = "SELECT * FROM tbl_comment WHERE video_id = ?";
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setLong(1, videoId);
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					return Optional.of(getValueFromResultSet(resultSet));
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Comment: Yorumlar verileri alınırken hata oluştu: " + e.getMessage());
+		}
+		return Optional.empty();
+	}
+	
 }
