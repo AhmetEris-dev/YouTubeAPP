@@ -27,6 +27,8 @@ public class VideoGUI {
 			System.out.println("2-Video Paylaş");
 			System.out.println("3-Kendi Videolarını Görüntüle");
 			System.out.println("4-Kullanıcıları Listele");
+			System.out.println("5-Like Menusu");
+			System.out.println("6-Yorum Menusu");
 			System.out.println("0-Cıkış yap");
 			System.out.print("Seçiminiz: ");
 			
@@ -35,8 +37,6 @@ public class VideoGUI {
 			switch (secim){
 				case 1:
 					viewAllVideos();
-					LikeGUI likegui = new LikeGUI();
-					likegui.likeMenu();
 					break;
 					
 				case 2:{
@@ -50,6 +50,14 @@ public class VideoGUI {
 				case 4:{
 					kullanicilariListele();
 					break;
+				}
+				case 5:{
+					LikeGUI likeGUI = new LikeGUI();
+					likeGUI.likeMenu();
+				}
+				case 6:{
+					CommentGUI commentGUI = new CommentGUI();
+					commentGUI.yorumMenusu();
 				}
 				case 0:{
 					System.out.println("Ana menuye dönülüyor");
@@ -75,6 +83,8 @@ public class VideoGUI {
 				System.out.println("İçerik: " + video.getDescription());
 				System.out.println("-----------------------");
 			}
+			
+		
 		}
 	}
 	

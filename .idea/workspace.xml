@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/LikeGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/YoutubeApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/SorulacakSorular.md" afterDir="false" />
+    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="likeGUI sınıfı oluşturuldu">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/CommentGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/VideoGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/repository/LikeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +119,7 @@
       <workItem from="1726326812560" duration="1537000" />
       <workItem from="1726334579171" duration="11383000" />
       <workItem from="1726409045382" duration="9833000" />
-      <workItem from="1726466795939" duration="8021000" />
+      <workItem from="1726466795939" duration="8580000" />
     </task>
     <task id="LOCAL-00001" summary="Entity package oluşturuldu">
       <option name="closed" value="true" />
@@ -206,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726419110531</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="likeGUI sınıfı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726487311290</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726487311290</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +224,7 @@
     <MESSAGE value="dto package,request package,respone packageları oluşturuldu.userService ve videoService sınıflarında duzenlemeler yapıldı" />
     <MESSAGE value="düzenlemeler yapıldı,metotlar test edildi" />
     <MESSAGE value="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu" />
-    <option name="LAST_COMMIT_MESSAGE" value="gui package'ı oluşturuldu,UserGUI ve VideoGUI sınıfları oluşturuldu" />
+    <MESSAGE value="likeGUI sınıfı oluşturuldu" />
+    <option name="LAST_COMMIT_MESSAGE" value="likeGUI sınıfı oluşturuldu" />
   </component>
 </project>
