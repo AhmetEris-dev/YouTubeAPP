@@ -6,6 +6,7 @@ import com.ahmete.dto.response.LikeResponseDto;
 import com.ahmete.entity.Like;
 import com.ahmete.entity.User;
 import com.ahmete.entity.Video;
+import com.ahmete.gui.UserGUI;
 import com.ahmete.repository.LikeRepository;
 
 import java.util.List;
@@ -137,27 +138,38 @@ public class LikeService {
 		);
 		return likeOptional;
 	}
-	
-	public String likeAt(String videoTitle) {
-		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
+	public String likeAt(Long videoId) {
+		Optional<Video> videoOpt = videoService.findById(videoId);
 		
 		if (videoOpt.isPresent()) {
 			Video video = videoOpt.get();
-			Optional<Like> likeOpt = likeRepository.findById(video.getId());
+			User currentUser = UserGUI.girisYapanKullanici;
 			
-			if (likeOpt.isPresent()) {
-				Like like = likeOpt.get();
-				like.setStatus(1);
-				likeRepository.update(like);
-				return "Video başlığına göre like atıldı.";
-			} else {
-				return "Video için like bulunamadı.";
+			if (currentUser == null) {
+				return "Kullanıcı oturum açmamış.";
 			}
+			
+			Long userId = currentUser.getId();
+			Optional<Like> likeOpt = likeRepository.findByVideoIdAndUserId(videoId, userId);
+			
+			Like like;
+			if (likeOpt.isPresent()) {
+				like = likeOpt.get();
+				like.setStatus(1);
+			} else {
+				like = new Like();
+				like.setUserId(userId);
+				like.setVideoId(videoId);
+				like.setStatus(1);
+			}
+			
+			likeRepository.save(like);
+			return "Video başlığına göre like atıldı.";
 		} else {
 			return "Video başlığı ile video bulunamadı.";
 		}
-	}
 	
+	}
 	public String dissLikeAt(String videoTitle) {
 		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
 		

@@ -118,7 +118,7 @@ public class UserRepository implements ICrud<User> {
 	}
 	
 	public Optional<User> findByUserName(String username) {
-		sql = "SELECT * FROM tbl_user WHERE username = ?";
+		 sql = "SELECT * FROM tbl_user WHERE username = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setString(1, username);
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -127,10 +127,9 @@ public class UserRepository implements ICrud<User> {
 				}
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.out.println("Aranan user name bulunamadı " + e.getMessage());
 		}
 		return Optional.empty();
-		
 	}
 	
 	

@@ -38,24 +38,17 @@ public class CommentRepository implements ICrud<Comment> {
 	
 	@Override
 	public Optional<Comment> update(Comment comment) {
-		sql = "UPDATE tbl_comment SET user_id = ?, video_id = ?, commenttext = ?, status = ? WHERE id = ?";
+		String sql = "UPDATE tbl_comment SET commentText = ?, status = ? WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
-			preparedStatement.setLong(1, comment.getUserId());
-			preparedStatement.setLong(2, comment.getVideoId());
-			preparedStatement.setString(3, comment.getCommentText());
-			preparedStatement.setInt(4, comment.getStatus());
-			preparedStatement.setLong(5, comment.getId());
-			int updatedRows = preparedStatement.executeUpdate();
-			if (updatedRows > 0) {
-				System.out.println("Güncelleme Başarılı!");
-			} else {
-				System.out.println("Güncelleme Başarısız!");
-			}
+			preparedStatement.setString(1, comment.getCommentText());
+			preparedStatement.setInt(2, comment.getStatus());
+			preparedStatement.setLong(3, comment.getId());
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.err.println("Comment: Comment verileri alınırken hata oluştu: " + e.getMessage());
-			
+			e.printStackTrace();
+			System.out.println("Yorum güncellenirken bir hata oluştu: " + e.getMessage());
 		}
-		return Optional.of(comment);
+		return Optional.ofNullable(comment);
 	}
 	
 	@Override
@@ -118,19 +111,20 @@ public class CommentRepository implements ICrud<Comment> {
 		return new Comment(id, userId, videoId,commentText, state, createat, updateat);
 	}
 	
-	public Optional<Comment> findByVideoId(Long videoId) {
-		sql = "SELECT * FROM tbl_comment WHERE video_id = ?";
+	public List<Comment> findByVideoId(Long videoId) {
+		List<Comment> comments = new ArrayList<>();
+		String sql = "SELECT * FROM tbl_comment WHERE video_id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setLong(1, videoId);
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
-				if (resultSet.next()) {
-					return Optional.of(getValueFromResultSet(resultSet));
+				while (resultSet.next()) {
+					comments.add(getValueFromResultSet(resultSet));
 				}
 			}
 		} catch (SQLException e) {
-			System.err.println("Comment: Yorumlar verileri alınırken hata oluştu: " + e.getMessage());
+			System.out.println("Yorumlar alınırken hata oluştu: " + e.getMessage());
 		}
-		return Optional.empty();
+		return comments;
 	}
 	
 }

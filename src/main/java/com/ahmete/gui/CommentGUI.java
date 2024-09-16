@@ -10,11 +10,10 @@ import java.util.Scanner;
 
 public class CommentGUI {
 	private static final Scanner scanner = new Scanner(System.in);
-	private final CommentService commentService;
+
 	private final CommentController commentController;
 	
 	public CommentGUI() {
-		this.commentService = new CommentService();
 		this.commentController = new CommentController();
 	}
 	

@@ -34,6 +34,15 @@ public class Like extends BaseEntity{
 		this.status = status;
 	}
 	
+	public Like(Long id, Long userId, Long videoId, Integer status, Integer state, Long createat, Long updateat) {
+		super(state, createat, updateat);
+		this.id = id;
+		this.userId = userId;
+		this.videoId = videoId;
+		this.status = status;
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}

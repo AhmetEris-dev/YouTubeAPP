@@ -1,19 +1,26 @@
 package com.ahmete.dto.request;
 
 public class CommentUpdateRequestDto {
-	private Long likeId;
+	private Long id;
 	private Long userId;
 	private Long videoId;
 	private Integer status;
 	private String commentText;
 	
-	public CommentUpdateRequestDto(Long likeId, Long userId, Long videoId, Integer status, String commentText) {
-		this.likeId = likeId;
+	public CommentUpdateRequestDto(Long id, Long userId, Long videoId, Integer status, String commentText) {
+		this.id = id;
 		this.userId = userId;
 		this.videoId = videoId;
 		this.status = status;
 		this.commentText = commentText;
-		
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getCommentText() {
@@ -24,13 +31,7 @@ public class CommentUpdateRequestDto {
 		this.commentText = commentText;
 	}
 	
-	public Long getLikeId() {
-		return likeId;
-	}
 	
-	public void setLikeId(Long likeId) {
-		this.likeId = likeId;
-	}
 	
 	public Long getUserId() {
 		return userId;

@@ -66,10 +66,15 @@ public class CommentController {
 	}
 	
 	public void removeComment() {
+		// Kullanıcıdan video başlığını ve silmek istediği yorumu al
 		System.out.print("Silmek istediğiniz video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
-		String sonuc = commentService.removeComment(videoTitle);
+		System.out.print("Silmek istediğiniz yorumun metnini girin: ");
+		String commentText = scanner.nextLine();
+		
+		// Yorum silme işlemi
+		String sonuc = commentService.removeComment(videoTitle, commentText);
 		System.out.println(sonuc);
 	}
 	
@@ -107,10 +112,13 @@ public class CommentController {
 		System.out.print("Düzenleyeceğiniz video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
+		System.out.print("Eski yorumu girin: ");
+		String oldCommentText = scanner.nextLine();
+		
 		System.out.print("Yeni yorumu girin: ");
 		String newCommentText = scanner.nextLine();
 		
-		Optional<CommentResponseDto> result = commentService.editComment(videoTitle, newCommentText);
+		Optional<CommentResponseDto> result = commentService.editComment(videoTitle, oldCommentText, newCommentText);
 		
 		if (result.isPresent()) {
 			CommentResponseDto commentResponse = result.get();

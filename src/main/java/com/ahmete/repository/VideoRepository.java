@@ -5,6 +5,7 @@ import com.ahmete.entity.Video;
 import com.ahmete.utility.ConnectionProvider;
 import com.ahmete.utility.ICrud;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,17 +108,17 @@ public class VideoRepository implements ICrud<Video> {
 		return new Video(id, userId, title, description, state, createat, updateat);
 	}
 	
-	public Optional<Video> findByTitle(String videoTitle) {
-		sql = "SELECT * FROM tbl_video WHERE title = ?";
+	public Optional<Video> findByTitle(String title) {
+		String sql = "SELECT * FROM tbl_video WHERE title = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
-			preparedStatement.setString(1, videoTitle);
+			preparedStatement.setString(1, title);
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					return Optional.of(getValueFromResultSet(resultSet));
 				}
 			}
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			System.out.println("Aranan video başlığı bulunamadı " + e.getMessage());
 		}
 		return Optional.empty();
 	}

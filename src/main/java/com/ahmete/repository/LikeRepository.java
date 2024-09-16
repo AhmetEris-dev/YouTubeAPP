@@ -4,6 +4,7 @@ import com.ahmete.entity.Like;
 import com.ahmete.utility.ConnectionProvider;
 import com.ahmete.utility.ICrud;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,11 +22,12 @@ public class LikeRepository implements ICrud<Like> {
 	
 	@Override
 	public Optional<Like> save(Like like) {
-		sql = "INSERT INTO tbl_like(user_id, video_id) VALUES(?, ?)";
+		sql = "INSERT INTO tbl_like(user_id, video_id, status) VALUES(?, ?, ?)";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql);
 		) {
 			preparedStatement.setLong(1, like.getUserId());
 			preparedStatement.setLong(2, like.getVideoId());
+			preparedStatement.setInt(3, like.getStatus());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
@@ -104,12 +106,30 @@ public class LikeRepository implements ICrud<Like> {
 		Long id = resultSet.getLong("id");
 		Long userId = resultSet.getLong("user_id");
 		Long videoId = resultSet.getLong("video_id");
+		Integer status = resultSet.getInt("status");
 		Integer state = resultSet.getInt("state");
 		Long createat = resultSet.getLong("createat");
 		Long updateat= resultSet.getLong("updateat");
 		
-		return new Like(id, userId, videoId, state, createat, updateat);
+		return new Like(id, userId, videoId,status, state, createat, updateat);
 	}
 	
+	
+	public Optional<Like> findByVideoIdAndUserId(Long videoId, Long userId) {
+		String sql = "SELECT * FROM tbl_like WHERE video_id = ? AND user_id = ?";
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setLong(1, videoId);
+			preparedStatement.setLong(2, userId);
+			
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					return Optional.of(getValueFromResultSet(resultSet));
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Like verilerini alırken hata oluştu: " + e.getMessage());
+		}
+		return Optional.empty();
+	}
 	
 }

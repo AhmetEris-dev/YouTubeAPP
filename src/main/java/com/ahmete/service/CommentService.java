@@ -4,7 +4,6 @@ import com.ahmete.dto.request.CommentSaveRequestDto;
 import com.ahmete.dto.request.CommentUpdateRequestDto;
 import com.ahmete.dto.response.CommentResponseDto;
 import com.ahmete.entity.Comment;
-import com.ahmete.entity.Like;
 import com.ahmete.entity.User;
 import com.ahmete.entity.Video;
 import com.ahmete.repository.CommentRepository;
@@ -60,7 +59,7 @@ public class CommentService {
 	
 	public Optional<CommentResponseDto> update(CommentUpdateRequestDto dto) {
 		CommentResponseDto commentResponseDto = new CommentResponseDto();
-		Optional<Comment> byId = commentRepository.findById(dto.getLikeId());
+		Optional<Comment> byId = commentRepository.findById(dto.getId());
 		try {
 			if (byId.isPresent()) {
 				Comment comment = byId.get();
@@ -179,18 +178,27 @@ public class CommentService {
 		}
 	}
 	
-	public Optional<CommentResponseDto> editComment(String videoTitle, String newCommentText) {
+	public Optional<CommentResponseDto> editComment(String videoTitle, String oldCommentText, String newCommentText) {
 		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
 		
 		if (videoOpt.isPresent()) {
 			Video video = videoOpt.get();
+			List<Comment> comments = commentRepository.findByVideoId(video.getId());
 			
-			Optional<Comment> commentOpt = commentRepository.findByVideoId(video.getId());
+			// Eski yorumu bul
+			Comment comment = comments.stream()
+			                          .filter(c -> c.getCommentText().equals(oldCommentText))
+			                          .findFirst()
+			                          .orElse(null);
 			
-			if (commentOpt.isPresent()) {
-				Comment comment = commentOpt.get();
-				comment.setCommentText(newCommentText);
+			if (comment != null) {
+				// Status kontrolü
+				if (comment.getStatus() == null) {
+					comment.setStatus(0); // Varsayılan bir değer atayın
+				}
 				
+				// Güncelleme yap
+				comment.setCommentText(newCommentText);
 				commentRepository.update(comment);
 				
 				CommentResponseDto commentResponseDto = new CommentResponseDto();
@@ -200,7 +208,7 @@ public class CommentService {
 				
 				return Optional.of(commentResponseDto);
 			} else {
-				System.out.println("Bu video için yorum bulunamadı.");
+				System.out.println("Bu video için eski yorum bulunamadı.");
 				return Optional.empty();
 			}
 		} else {
@@ -209,19 +217,28 @@ public class CommentService {
 		}
 	}
 	
-	public String removeComment(String videoTitle) {
+	public String removeComment(String videoTitle, String commentText) {
+		// Video başlığına göre video bulunur
 		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
 		
 		if (videoOpt.isPresent()) {
 			Video video = videoOpt.get();
-			Optional<Comment> commentOpt = commentRepository.findByVideoId(video.getId());
 			
-			if (commentOpt.isPresent()) {
-				Comment comment = commentOpt.get();
-				commentRepository.delete(comment.getId());
+			// Video ID'sine göre yorumlar alınır
+			List<Comment> comments = commentRepository.findByVideoId(video.getId());
+			
+			// Belirtilen yorum metnine sahip yorum bulunur
+			Comment commentToRemove = comments.stream()
+			                                  .filter(comment -> comment.getCommentText().equals(commentText))
+			                                  .findFirst()
+			                                  .orElse(null);
+			
+			if (commentToRemove != null) {
+				// Yorum silinir
+				commentRepository.delete(commentToRemove.getId());
 				return "Yorum başarıyla silindi.";
 			} else {
-				return "Bu video için yorum bulunamadı.";
+				return "Belirtilen yorum bulunamadı.";
 			}
 		} else {
 			return "Video başlığı ile video bulunamadı.";

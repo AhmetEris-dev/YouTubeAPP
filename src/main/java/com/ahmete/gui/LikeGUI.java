@@ -11,11 +11,9 @@ import java.util.Scanner;
 public class LikeGUI {
 	private static final Scanner scanner=new Scanner(System.in);
 	private final LikeController likeController=new LikeController();
-	private final LikeService likeService;
+
 	
-	public LikeGUI() {
-		this.likeService = new LikeService();
-	}
+
 	
 	public void likeMenu(){
 		while (true) {

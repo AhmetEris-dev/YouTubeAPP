@@ -12,6 +12,7 @@ user profil
 sabitlenmiş video
 populer videolar 5 adet list<video>
 tum videolar  list<video>
+
 video model
 
 

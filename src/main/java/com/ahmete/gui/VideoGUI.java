@@ -13,68 +13,59 @@ import java.util.Scanner;
 public class VideoGUI {
 	
 	private static final Scanner scanner = new Scanner(System.in);
-	private final VideoRepository videoRepository;
 	private final VideoController videoController=new VideoController();
 	
 	
-	public VideoGUI() {
-		this.videoRepository = new VideoRepository();
-	}
 	
-	public void girisEkrani(){
-		
-		while (true){
-			System.out.println("Video Menusu");
+	
+	public void girisEkrani() {
+		while (true) {
+			System.out.println("Video Menüsü");
 			System.out.println("1-Videoları Görüntüle");
 			System.out.println("2-Video Paylaş");
 			System.out.println("3-Kendi Videolarını Görüntüle");
 			System.out.println("4-Kullanıcıları Listele");
 			System.out.println("5-Like İşlemleri");
 			System.out.println("6-Yorum İşlemleri");
-			System.out.println("0-Cıkış yap");
+			System.out.println("7- Profil Görüntüle");
+			System.out.println("0-Çıkış Yap");
 			System.out.print("Seçiminiz: ");
 			
-			int secim = scanner.nextInt();scanner.nextLine();
+			int secim = scanner.nextInt();
+			scanner.nextLine();
 			
-			switch (secim){
+			switch (secim) {
 				case 1:
 					videoController.viewAllVideos();
 					break;
-					
-				case 2:{
+				case 2:
 					videoController.shareVideo();
 					break;
-				}
-				case 3:{
+				case 3:
 					videoController.viewYourOwnVideos();
 					break;
-				}
-				case 4:{
+				case 4:
 					videoController.kullanicilariListele();
 					break;
-				}
-				case 5:{
+				case 5:
 					LikeGUI likeGUI = new LikeGUI();
 					likeGUI.likeMenu();
-				}
-				case 6:{
+					break;
+				case 6:
 					CommentGUI commentGUI = new CommentGUI();
 					commentGUI.yorumMenusu();
-				}
-				case 0:{
-					System.out.println("Ana menuye dönülüyor");
+					break;
+				case 7:
+					ProfileGUI profileGUI = new ProfileGUI();
+					profileGUI.profileMenu();
+					break;
+				case 0:
+					System.out.println("Ana menüye dönülüyor...");
 					return;
-				}
 				default:
 					System.out.println("Geçersiz seçenek, lütfen tekrar deneyin.");
-				
 			}
 		}
 	}
-	
-	
-	
-	
-	
 	
 }
