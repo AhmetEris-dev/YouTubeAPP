@@ -42,6 +42,12 @@ public class CommentGUI {
 					commentController.removeComment();
 					break;
 				}
+				case 0:
+					System.out.println("Çıkış yapılıyor...");
+					return;
+				default:
+					System.out.println("Geçersiz seçenek, lütfen tekrar deneyin.");
+				
 			}
 		}
 	}
