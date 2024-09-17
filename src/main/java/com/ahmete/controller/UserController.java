@@ -64,10 +64,7 @@ public class UserController {
 	
 	public Optional<User> findById(Long id) {
 		Optional<User> userOptional = userService.findById(id);
-		userOptional.ifPresentOrElse(
-				user -> System.out.println("Controller User bulundu: " + user.getSurname()),
-				() -> System.out.println("Controller Böyle bir User bulunamadı.")
-		);
+		
 		return userOptional;
 	}
 	

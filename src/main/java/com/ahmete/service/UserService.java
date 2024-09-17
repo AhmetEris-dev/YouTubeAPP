@@ -6,9 +6,7 @@ import com.ahmete.dto.response.UserResponseDto;
 import com.ahmete.entity.User;
 import com.ahmete.repository.UserRepository;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +44,7 @@ public class UserService {
 		return Optional.of(responseDto);
 	}
 	
-	//userupdaterequestdt acılacak
+	
 	public Optional<UserResponseDto> update(UserUpdateRequestDto dto) {
 		Optional<User> existingUser = userRepository.findById(dto.getUserId());
 		if (existingUser.isPresent()) {
@@ -106,8 +104,6 @@ public class UserService {
 	
 	public Optional<User> findById(Long id) {
 		Optional<User> user = userRepository.findById(id);
-		user.ifPresentOrElse(u -> System.out.println("Service User bulundu: " + u.getSurname()),
-		                     () -> System.out.println("Service Böyle bir User bulunamadı."));
 		return user;
 	}
 	

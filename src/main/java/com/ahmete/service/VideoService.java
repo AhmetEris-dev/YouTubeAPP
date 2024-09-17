@@ -14,6 +14,7 @@ import java.util.Optional;
 public class VideoService {
 	private final VideoRepository videoRepository;
 	private final UserService userService;
+	
 	public VideoService() {
 		this.videoRepository = new VideoRepository();
 		this.userService = new UserService();
@@ -24,7 +25,7 @@ public class VideoService {
 		Optional<Video> videoOptional;
 		VideoResponseDto responseDto = new VideoResponseDto();
 		try {
-			Optional<User> userOptional=userService.findByUserName(dto.getUserName());
+			Optional<User> userOptional = userService.findByUserName(dto.getUserName());
 			if (userOptional.isPresent()) {
 				video = new Video();
 				video.setTitle(dto.getTitle());
@@ -35,12 +36,13 @@ public class VideoService {
 				responseDto.setUserName(userService.findById(videoOptional.get().getUserId()).get().getUsername());
 				responseDto.setTitle(videoOptional.get().getTitle());
 				responseDto.setDescription(videoOptional.get().getDescription());
-				System.out.println(videoOptional.get().getTitle()+" başarıyla kaydedildi.");
+				System.out.println(videoOptional.get().getTitle() + " başarıyla kaydedildi.");
 				return Optional.of(responseDto);
 				
 			}
 			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.out.println("Service Video kaydedilirken hata oluştu: " + e.getMessage());
 		}
 		
@@ -53,12 +55,12 @@ public class VideoService {
 		try {
 			Optional<Video> byTitle = videoRepository.findById(dto.getVideoId());
 			if (byTitle.isPresent()) {
-
+				
 				Video video = byTitle.get();
 				video.setTitle(dto.getTitle());
 				video.setDescription(dto.getDescription());
 				
-				Optional<Video>  updateVideo = videoRepository.update(video);
+				Optional<Video> updateVideo = videoRepository.update(video);
 				
 				VideoResponseDto responseDto = new VideoResponseDto();
 				responseDto.setTitle(updateVideo.get().getTitle());
@@ -71,10 +73,11 @@ public class VideoService {
 			else {
 				System.out.println("Service Güncellenmek istenen Video bulunamadı.");
 			}
-		}catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.out.println("Service Video güncellenirken hata oluştu: " + e.getMessage());
 			e.printStackTrace();
-
+			
 		}
 		return Optional.empty();
 	}
@@ -82,17 +85,7 @@ public class VideoService {
 	
 	public void delete(Long id) {
 		videoRepository.delete(id);
-//		Optional<Video> mevcutVideo = findById(id);
-//		if (mevcutVideo.isPresent()) {
-//			try {
-//				videoRepository.delete(id);
-//				System.out.println("Service Video başarıyla silindi.");
-//			} catch (Exception e) {
-//				System.out.println("Service Video silinirken hata oluştu: " + e.getMessage());
-//			}
-//		} else {
-//			System.out.println("Service Silinmek istenen Video bulunamadı.");
-//		}
+
 	}
 	
 	
@@ -116,14 +109,36 @@ public class VideoService {
 	
 	public Optional<Video> findById(Long id) {
 		Optional<Video> videoOptional = videoRepository.findById(id);
-		videoOptional.ifPresentOrElse(
-				video -> System.out.println("Service Video bulundu: " + video.getTitle()),
-				() -> System.out.println("Service Böyle bir Video bulunamadı.")
-		);
+		videoOptional.ifPresentOrElse(video -> System.out.println("Service Video bulundu: " + video.getTitle()),
+		                              () -> System.out.println("Service Böyle bir Video bulunamadı."));
 		return videoOptional;
 	}
 	
 	public Optional<Video> findByTitle(String videoTitle) {
 		return videoRepository.findByTitle(videoTitle);
 	}
+	
+	public List<Video> viewAllVideos() {
+		return videoRepository.findAll();
+	}
+	 public void likeCount(String videoTitle) {
+		Optional<Video> videoOpt = videoRepository.findByTitle(videoTitle);
+		if (videoOpt.isPresent()) {
+			Video video = videoOpt.get();
+			video.setLikeCount(video.getLikeCount() + 1);
+			videoRepository.update(video);
+		}else {
+			System.out.println("Video başlığı ile video bulunamadı.");
+		}
+		
+	 }
+	 
+	 public void incrementCommentCount(String videoTitle) {
+		 videoRepository.incrementCommentCount(videoTitle);
+	 }
+	
+	public void incrementDisLikeCount(String videoTitle) {
+		videoRepository.incrementDisLikeCount(videoTitle);
+	}
+	
 }

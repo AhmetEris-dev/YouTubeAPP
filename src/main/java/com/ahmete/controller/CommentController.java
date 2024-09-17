@@ -4,9 +4,9 @@ import com.ahmete.dto.request.CommentSaveRequestDto;
 import com.ahmete.dto.request.CommentUpdateRequestDto;
 import com.ahmete.dto.response.CommentResponseDto;
 import com.ahmete.entity.Comment;
-import com.ahmete.entity.Like;
 import com.ahmete.service.CommentService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -65,15 +65,17 @@ public class CommentController {
 		return commentOptional;
 	}
 	
+	public List<Comment> findByIdComment(Long videoId) {
+		return commentService.findByCommentVideoId(videoId);
+	}
+	
 	public void removeComment() {
-		// Kullanıcıdan video başlığını ve silmek istediği yorumu al
 		System.out.print("Silmek istediğiniz video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
 		System.out.print("Silmek istediğiniz yorumun metnini girin: ");
 		String commentText = scanner.nextLine();
 		
-		// Yorum silme işlemi
 		String sonuc = commentService.removeComment(videoTitle, commentText);
 		System.out.println(sonuc);
 	}
@@ -107,18 +109,15 @@ public class CommentController {
 			System.out.println("Yorum eklenirken bir hata oluştu. Lütfen bilgileri kontrol edin.");
 		}
 	}
-	//TODO DUZENLECEK !!!
+
 	public void editComment() {
 		System.out.print("Düzenleyeceğiniz video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
-		System.out.print("Eski yorumu girin: ");
-		String oldCommentText = scanner.nextLine();
-		
 		System.out.print("Yeni yorumu girin: ");
 		String newCommentText = scanner.nextLine();
 		
-		Optional<CommentResponseDto> result = commentService.editComment(videoTitle, oldCommentText, newCommentText);
+		Optional<CommentResponseDto> result = commentService.editComment(videoTitle, newCommentText);
 		
 		if (result.isPresent()) {
 			CommentResponseDto commentResponse = result.get();

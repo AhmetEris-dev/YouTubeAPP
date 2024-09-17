@@ -20,6 +20,5 @@ public class YoutubeApp {
 		boolean isClosed = connection.isClosed();
 		System.out.println("Connection closed: " + isClosed);
 		
-		
 	}
 }

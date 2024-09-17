@@ -4,7 +4,7 @@ public class Comment extends BaseEntity {
 	private Long id;
 	private Long userId;
 	private Long videoId;
-	private Integer status ;
+	private Integer status;
 	private String commentText;
 	
 	public Comment() {

@@ -85,7 +85,6 @@ public class LikeController {
 			System.out.println("Video başlığı ile video bulunamadı.");
 		}
 	}
-
 	
 	public void throwADissLike() {
 		System.out.print("Diss like atacağınız video başlığını girin: ");
@@ -96,7 +95,7 @@ public class LikeController {
 	}
 	
 	public void withDrawLike() {
-		System.out.print("Diss like atacağınız video başlığını girin: ");
+		System.out.print(" like geri cek atacağınız video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
 		String sonuc = likeService.likeGeriCek(videoTitle);

@@ -15,9 +15,6 @@ public class VideoGUI {
 	private static final Scanner scanner = new Scanner(System.in);
 	private final VideoController videoController=new VideoController();
 	
-	
-	
-	
 	public void girisEkrani() {
 		while (true) {
 			System.out.println("Video Menüsü");
@@ -27,7 +24,6 @@ public class VideoGUI {
 			System.out.println("4-Kullanıcıları Listele");
 			System.out.println("5-Like İşlemleri");
 			System.out.println("6-Yorum İşlemleri");
-			System.out.println("7- Profil Görüntüle");
 			System.out.println("0-Çıkış Yap");
 			System.out.print("Seçiminiz: ");
 			
@@ -37,6 +33,7 @@ public class VideoGUI {
 			switch (secim) {
 				case 1:
 					videoController.viewAllVideos();
+					videoController.SelectVideo();
 					break;
 				case 2:
 					videoController.shareVideo();
@@ -54,10 +51,6 @@ public class VideoGUI {
 				case 6:
 					CommentGUI commentGUI = new CommentGUI();
 					commentGUI.yorumMenusu();
-					break;
-				case 7:
-					ProfileGUI profileGUI = new ProfileGUI();
-					profileGUI.profileMenu();
 					break;
 				case 0:
 					System.out.println("Ana menüye dönülüyor...");

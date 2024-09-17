@@ -1,6 +1,7 @@
 package com.ahmete.dto.response;
 
 public class VideoResponseDto {
+
 	private String userName;
 	private String title;
 	private String description;

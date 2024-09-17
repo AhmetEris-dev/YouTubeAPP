@@ -29,6 +29,7 @@ public class LikeGUI {
 			switch (secim) {
 				case 1:{
 					likeController.throwALike();
+					
 					break;
 				}
 				case 2:{
@@ -49,6 +50,4 @@ public class LikeGUI {
 			}
 		}
 	}
-	
-	
 }

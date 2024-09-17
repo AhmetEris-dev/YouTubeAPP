@@ -33,6 +33,10 @@ public class DatabaseSchema {
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id) , " +
                 "title varchar(255), " +
                 "description varchar(255) , " +
+                "viewcount INTEGER DEFAULT 0, " +
+                "likecount INTEGER DEFAULT 0, " +
+                "commentcount INTEGER DEFAULT 0, " +
+                "dislikecount INTEGER DEFAULT 0, " +
                 "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +
@@ -53,7 +57,7 @@ public class DatabaseSchema {
                 "user_id BIGINT NOT NULL REFERENCES tbl_user(id), " +
                 "video_id BIGINT NOT NULL REFERENCES tbl_video(id), " +
                 "commenttext text DEFAULT 1, " +
-                "status INTEGER DEFAULT 0, " +
+                "status INTEGER DEFAULT 1, " +
                 "state INTEGER DEFAULT 1, " +
                 "createat BIGINT DEFAULT EXTRACT(epoch FROM now()), " +
                 "updateat BIGINT DEFAULT EXTRACT(epoch FROM now()) " +

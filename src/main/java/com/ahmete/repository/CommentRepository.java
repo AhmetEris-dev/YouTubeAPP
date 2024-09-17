@@ -38,15 +38,22 @@ public class CommentRepository implements ICrud<Comment> {
 	
 	@Override
 	public Optional<Comment> update(Comment comment) {
-		String sql = "UPDATE tbl_comment SET commentText = ?, status = ? WHERE id = ?";
+		if (comment.getState() == null) {
+			comment.setState(0);
+		}
+		if (comment.getStatus() == null) {
+			comment.setStatus(0);
+		}
+		String sql = "UPDATE tbl_comment SET commentText = ?, status = ?, state = ? WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setString(1, comment.getCommentText());
 			preparedStatement.setInt(2, comment.getStatus());
-			preparedStatement.setLong(3, comment.getId());
+			preparedStatement.setInt(3, comment.getState()); // State'i güncelliyoruz
+			preparedStatement.setLong(4, comment.getId());
+			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Yorum güncellenirken bir hata oluştu: " + e.getMessage());
 		}
 		return Optional.ofNullable(comment);
 	}

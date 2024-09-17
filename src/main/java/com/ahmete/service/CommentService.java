@@ -152,9 +152,8 @@ public class CommentService {
 				comment.setCommentText(dto.getCommentText());
 				comment.setStatus(1);
 				
-				System.out.println("Comment Status (Before Save): " + comment.getStatus());
 				commentOptional = commentRepository.save(comment);
-				System.out.println("Comment Status (After Save): " + commentOptional.get().getStatus());
+				
 				
 				if (commentOptional.isPresent()) {
 					Comment savedComment = commentOptional.get();
@@ -163,6 +162,7 @@ public class CommentService {
 					commentResponseDto.setCommentText(savedComment.getCommentText());
 					
 					System.out.println("Yorum başarıyla kaydedildi.");
+					videoService.incrementCommentCount(dto.getVideotitle());
 					return Optional.of(commentResponseDto);
 				} else {
 					System.out.println("Yorum kaydedilirken bir hata oluştu.");
@@ -178,27 +178,21 @@ public class CommentService {
 		}
 	}
 	
-	public Optional<CommentResponseDto> editComment(String videoTitle, String oldCommentText, String newCommentText) {
+	public Optional<CommentResponseDto> editComment(String videoTitle, String newCommentText) {
 		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
 		
 		if (videoOpt.isPresent()) {
 			Video video = videoOpt.get();
 			List<Comment> comments = commentRepository.findByVideoId(video.getId());
 			
-			// Eski yorumu bul
-			Comment comment = comments.stream()
-			                          .filter(c -> c.getCommentText().equals(oldCommentText))
-			                          .findFirst()
-			                          .orElse(null);
-			
-			if (comment != null) {
-				// Status kontrolü
+			if (!comments.isEmpty()) {
+				Comment comment = comments.get(0);
+				comment.setCommentText(newCommentText);
+				
 				if (comment.getStatus() == null) {
-					comment.setStatus(0); // Varsayılan bir değer atayın
+					comment.setStatus(1);
 				}
 				
-				// Güncelleme yap
-				comment.setCommentText(newCommentText);
 				commentRepository.update(comment);
 				
 				CommentResponseDto commentResponseDto = new CommentResponseDto();
@@ -208,7 +202,7 @@ public class CommentService {
 				
 				return Optional.of(commentResponseDto);
 			} else {
-				System.out.println("Bu video için eski yorum bulunamadı.");
+				System.out.println("Bu video için yorum bulunamadı.");
 				return Optional.empty();
 			}
 		} else {
@@ -218,30 +212,30 @@ public class CommentService {
 	}
 	
 	public String removeComment(String videoTitle, String commentText) {
-		// Video başlığına göre video bulunur
 		Optional<Video> videoOpt = videoService.findByTitle(videoTitle);
 		
 		if (videoOpt.isPresent()) {
 			Video video = videoOpt.get();
-			
-			// Video ID'sine göre yorumlar alınır
 			List<Comment> comments = commentRepository.findByVideoId(video.getId());
 			
-			// Belirtilen yorum metnine sahip yorum bulunur
-			Comment commentToRemove = comments.stream()
-			                                  .filter(comment -> comment.getCommentText().equals(commentText))
-			                                  .findFirst()
-			                                  .orElse(null);
-			
-			if (commentToRemove != null) {
-				// Yorum silinir
-				commentRepository.delete(commentToRemove.getId());
-				return "Yorum başarıyla silindi.";
-			} else {
-				return "Belirtilen yorum bulunamadı.";
+			for (Comment comment : comments) {
+				if (comment.getCommentText().equals(commentText)) {
+					if (comment.getState() == null) {
+						comment.setState(0);
+					}
+					comment.setState(0);
+					commentRepository.update(comment);
+					
+					return "Yorum başarılı bir şekilde kaldırıldı";
+				}
 			}
+			return "Bu metin ile eşleşen bir yorum bulunamadı.";
 		} else {
 			return "Video başlığı ile video bulunamadı.";
 		}
+	}
+	
+	public List<Comment> findByCommentVideoId(Long videoId) {
+		return commentRepository.findByVideoId(videoId);
 	}
 }

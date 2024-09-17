@@ -164,6 +164,7 @@ public class LikeService {
 			}
 			
 			likeRepository.save(like);
+			videoService.likeCount(video.getTitle());
 			return "Video başlığına göre like atıldı.";
 		} else {
 			return "Video başlığı ile video bulunamadı.";
@@ -181,6 +182,7 @@ public class LikeService {
 				Like like = likeOpt.get();
 				like.setStatus(2);
 				likeRepository.update(like);
+				videoService.incrementDisLikeCount(video.getTitle());
 				return "Video başlığına göre diss like atıldı.";
 			} else {
 				return "Video için diss like bulunamadı.";

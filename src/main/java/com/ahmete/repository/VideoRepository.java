@@ -38,11 +38,16 @@ public class VideoRepository implements ICrud<Video> {
 	
 	@Override
 	public Optional<Video> update(Video video) {
-		sql = "UPDATE tbl_video SET  title = ?, description = ?  WHERE id = ?";
+		sql = "UPDATE tbl_video SET  title = ?, description = ?, viewcount = ?, likecount = ?, commentcount = ?, dislikecount = ? " +
+				"WHERE id = ?";
 		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
 			preparedStatement.setString(1, video.getTitle());
 			preparedStatement.setString(2, video.getDescription());
-			preparedStatement.setLong(3, video.getId());
+			preparedStatement.setInt(3,video.getViewCount());
+			preparedStatement.setInt(4,video.getLikeCount());
+			preparedStatement.setInt(5,video.getCommentCount());
+			preparedStatement.setInt(6,video.getDislikeCount());
+			preparedStatement.setLong(7, video.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows == 0) {
 				System.err.println("Repository: Video güncellenirken hata oluştu: Güncelleme başarısız.");
@@ -101,11 +106,15 @@ public class VideoRepository implements ICrud<Video> {
 		Long userId = resultSet.getLong("user_id");
 		String title = resultSet.getString("title");
 		String description = resultSet.getString("description");
+		int viewCount = resultSet.getInt("viewcount");
+		int likeCount = resultSet.getInt("likecount");
+		int commentCount = resultSet.getInt("commentcount");
+		int dislikecount = resultSet.getInt("dislikecount");
 		Integer state = resultSet.getInt("state");
 		Long createat = resultSet.getLong("createat");
 		Long updateat= resultSet.getLong("updateat");
 		
-		return new Video(id, userId, title, description, state, createat, updateat);
+		return new Video(id, userId, title, description, viewCount, likeCount, commentCount, dislikecount, state, createat, updateat);
 	}
 	
 	public Optional<Video> findByTitle(String title) {
@@ -141,5 +150,57 @@ public class VideoRepository implements ICrud<Video> {
 		}
 		
 		return videoList;
+	}
+	
+	public void incrementViewCount(String VideoTitle) {
+		sql = "UPDATE tbl_video SET viewcount = viewcount + 1 WHERE title= ?";
+		
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setString(1, VideoTitle);
+			int updatedRows = preparedStatement.executeUpdate();
+			
+			if (updatedRows > 0) {
+			
+			} else {
+				System.err.println("Video bulunamadı veya izlenme sayısı artırılamadı.");
+			}
+		} catch (SQLException e) {
+			System.err.println("İzlenme sayısı artırılırken hata oluştu: " + e.getMessage());
+		}
+	}
+	
+	
+	public void incrementCommentCount(String VideoTitle) {
+		sql = "UPDATE tbl_video SET commentcount = commentcount + 1 WHERE title= ?";
+		
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setString(1, VideoTitle);
+			int updatedRows = preparedStatement.executeUpdate();
+			
+			if (updatedRows > 0) {
+			
+			} else {
+				System.err.println("Video bulunamadı veya comment sayısı artırılamadı.");
+			}
+		} catch (SQLException e) {
+			System.err.println("Comment sayısı artırılırken hata oluştu: " + e.getMessage());
+		}
+	}
+	
+	public void incrementDisLikeCount(String VideoTitle) {
+		sql = "UPDATE tbl_video SET dislikecount = dislikecount + 1 WHERE title= ?";
+		
+		try (PreparedStatement preparedStatement = connectionProvider.getPreparedStatement(sql)) {
+			preparedStatement.setString(1, VideoTitle);
+			int updatedRows = preparedStatement.executeUpdate();
+			
+			if (updatedRows > 0) {
+			
+			} else {
+				System.err.println("Video bulunamadı veya dislike sayısı artırılamadı.");
+			}
+		} catch (SQLException e) {
+			System.err.println("dislike sayısı artırılırken hata oluştu: " + e.getMessage());
+		}
 	}
 }
