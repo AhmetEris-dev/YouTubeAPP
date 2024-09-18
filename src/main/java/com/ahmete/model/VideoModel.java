@@ -77,7 +77,7 @@ public class VideoModel {
 		System.out.println("-------------------------------------------------");
 		
 		// Açıklamayı yazdır
-		printDescriptionWithoutBreakingWords(description, 50);
+		printDescriptionWithoutBreakingWords("Acıklama: "+description, 50);
 		System.out.println("-------------------------------------------------");
 		
 		// Yorumları al ve yazdır

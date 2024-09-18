@@ -19,7 +19,7 @@ public class LikeGUI {
 		while (true) {
 			System.out.println("Like Menusu");
 			System.out.println("1-Like at");
-			System.out.println("2-DissLike at");
+			System.out.println("2-DisLike at");
 			System.out.println("3-Like'ı geri çek");
 			System.out.println("0-Cıkış Yap");
 			System.out.print("Seçiminiz: ");
