@@ -37,7 +37,7 @@ public class VideoModel {
 		this.videoId = video.getId();
 	}
 	
-	//ahmet
+	//ahmet neden böyle olduki
 	private void printDescriptionWithoutBreakingWords(String description, int lineLength) {
 		String[] words = description.split(" ");
 		StringBuilder currentLine = new StringBuilder();
