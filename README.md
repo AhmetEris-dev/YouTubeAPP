@@ -1,4 +1,4 @@
-# YotubeApp
+#YotubeApp
 
 ## 1-Genel İçerik ve Notlar
 
@@ -11,13 +11,13 @@
 
 ## 3-Mimari
 
-### Bu projede katmanlı mimari yapısı kullanılmıştır 
-### database'imiz ile repository sınıflarımız bağlantı kuruyor
-### repository sınıflarımız ile o repository'e ait service sınıflarımız bağlantı kuruyor
-### service sınıflarımız ile o service'e ait controller sınıflarımız bağlantı kuruyor
-### controller sınıflarımızda son olarak gui sınıflarımız ile bağlantı kurmaktadır
+### * Bu projede katmanlı mimari yapısı kullanılmıştır 
+### * database'imiz ile repository sınıflarımız bağlantı kuruyor
+### * repository sınıflarımız ile o repository'e ait service sınıflarımız bağlantı kuruyor
+### * service sınıflarımız ile o service'e ait controller sınıflarımız bağlantı kuruyor
+### * controller sınıflarımızda son olarak gui sınıflarımız ile bağlantı kurmaktadır
 
-## NOT 
+## NOT: 
 
 ### service sınıflarımız kendi arasında bağlantı kurabilirler.Bir service sınıfı farklı türde bir repository veya controller ile bağlantı kuramaz.
 ### gui sınıflarımız kullanıcların gördüğü menulerin oldugu sınıftır.
