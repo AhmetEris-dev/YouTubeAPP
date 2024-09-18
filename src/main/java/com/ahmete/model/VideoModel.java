@@ -14,8 +14,6 @@ public class VideoModel {
 	
 	public CommentController commentController = new CommentController();
 	public UserController userController = new UserController();
-	public LikeController likeController = new LikeController();
-	public VideoController videoController =new VideoController();
 	
 	private String username;
 	private String title;
@@ -70,17 +68,14 @@ public class VideoModel {
 		}
 		System.out.println("*************************************************");
 		
-		// Başlık ve kullanıcı adı bilgilerini ekleyin
 		System.out.println("Başlık: " + title);
 		System.out.println("Kullanıcı: " + username);
 		System.out.printf("\uD83D\uDC4D:%d \uD83D\uDC4E:%d \t📺:%d \t💬:%d\n", likeCount, dislikeCount, viewCount, commentCount);
 		System.out.println("-------------------------------------------------");
 		
-		// Açıklamayı yazdır
 		printDescriptionWithoutBreakingWords("Acıklama: "+description, 50);
 		System.out.println("-------------------------------------------------");
 		
-		// Yorumları al ve yazdır
 		List<Comment> comments = getCommentsForVideo(videoId);
 		if (comments.isEmpty()) {
 			System.out.println("Bu video için yorum bulunmamaktadır.");

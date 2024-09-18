@@ -2,6 +2,7 @@ package com.ahmete.gui;
 
 import com.ahmete.controller.UserController;
 import com.ahmete.entity.User;
+import com.ahmete.model.UserModel;
 import com.ahmete.repository.UserRepository;
 
 import java.util.List;

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="VideoModel sınıfı oluşturuldu">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/LikeGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/LikeGUI.java" afterDir="false" />
+    <list default="true" id="f3cfa483-2d07-4fe5-93f6-464b26df3ce6" name="Changes" comment="Usermodel sınıfı oluşturuldu">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/UserGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/gui/UserGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/model/UserModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/model/VideoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/model/VideoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ahmete/service/LikeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,24 +55,24 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Runner.executor&quot;: &quot;Run&quot;,
-    &quot;Application.YoutubeApp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/intellij/14_Hibernate/HibernateORM&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Runner.executor": "Run",
+    "Application.YoutubeApp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/intellij/YotubeAPP/YoutubeApp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ahmete.utility" />
@@ -127,6 +127,7 @@
       <workItem from="1726604021259" duration="624000" />
       <workItem from="1726609047484" duration="4060000" />
       <workItem from="1726639519805" duration="36000" />
+      <workItem from="1726655390662" duration="1957000" />
     </task>
     <task id="LOCAL-00001" summary="Entity package oluşturuldu">
       <option name="closed" value="true" />
@@ -256,7 +257,31 @@
       <option name="project" value="LOCAL" />
       <updated>1726601132258</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="VideoModel sınıfı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726655978729</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1726655978729</updated>
+    </task>
+    <task id="LOCAL-00018" summary="VideoModel sınıfı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726656016739</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1726656016739</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Usermodel sınıfı oluşturuldu">
+      <option name="closed" value="true" />
+      <created>1726656091475</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1726656091475</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +300,7 @@
     <MESSAGE value="CommentGUI sınıfı oluşturuldu" />
     <MESSAGE value="Duzenlemeler yapıldı." />
     <MESSAGE value="VideoModel sınıfı oluşturuldu" />
-    <option name="LAST_COMMIT_MESSAGE" value="VideoModel sınıfı oluşturuldu" />
+    <MESSAGE value="Usermodel sınıfı oluşturuldu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Usermodel sınıfı oluşturuldu" />
   </component>
 </project>

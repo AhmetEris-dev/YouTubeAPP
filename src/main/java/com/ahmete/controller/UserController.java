@@ -5,6 +5,7 @@ import com.ahmete.dto.request.UserUpdateRequestDto;
 import com.ahmete.dto.response.UserResponseDto;
 import com.ahmete.entity.User;
 import com.ahmete.gui.UserGUI;
+import com.ahmete.model.UserModel;
 import com.ahmete.repository.UserRepository;
 import com.ahmete.service.UserService;
 
@@ -17,9 +18,11 @@ public class UserController {
 	private final UserRepository userRepository;
 	
 	
+	
 	public UserController() {
 		this.userService = new UserService();
 		this.userRepository = new UserRepository();
+		
 		
 	}
 	
@@ -117,6 +120,9 @@ public class UserController {
 		if (user.isPresent()) {
 			UserGUI.girisYapanKullanici=user.get(); //girisbasarılı ise kullanıcıyı sakladık
 			System.out.println("Giriş başarılı! Hoşgeldin, " + user.get().getName() +" "+ user.get().getSurname()+ "!");
+			UserModel userModel = new UserModel(user.get());
+			userModel.displayUser();
+			
 			//burada giriş yapan user'a her yerden erişebilmeli
 			
 		} else {

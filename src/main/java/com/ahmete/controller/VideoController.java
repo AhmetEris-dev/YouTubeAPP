@@ -7,6 +7,7 @@ import com.ahmete.entity.User;
 import com.ahmete.entity.Video;
 import com.ahmete.gui.UserGUI;
 import com.ahmete.gui.VideoGUI;
+import com.ahmete.model.UserModel;
 import com.ahmete.model.VideoModel;
 import com.ahmete.repository.VideoRepository;
 import com.ahmete.service.VideoService;
@@ -124,7 +125,8 @@ public class VideoController {
 		} else {
 			System.out.println("Kullanıcı Listesi:");
 			for (User user : users) {
-				System.out.println("Username: " + user.getUsername());
+				UserModel userModel=new UserModel(user);
+				userModel.displayUser();
 			}
 		}
 	}
