@@ -161,7 +161,7 @@ public class CommentService {
 					commentResponseDto.setVideotitle(videoService.findById(savedComment.getVideoId()).get().getTitle());
 					commentResponseDto.setCommentText(savedComment.getCommentText());
 					
-					System.out.println("Yorum başarıyla kaydedildi.");
+					
 					videoService.incrementCommentCount(dto.getVideotitle());
 					return Optional.of(commentResponseDto);
 				} else {

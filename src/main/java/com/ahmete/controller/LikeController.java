@@ -62,10 +62,6 @@ public class LikeController {
 	
 	public Optional<Like> findById(Long id) {
 		Optional<Like> likeOptional = likeService.findById(id);
-		likeOptional.ifPresentOrElse(
-				like -> System.out.println("Controller Like bulundu: " + like.getVideoId()),
-				() -> System.out.println("Controller Böyle bir Like bulunamadı.")
-		);
 		return likeOptional;
 	}
 	
@@ -87,7 +83,7 @@ public class LikeController {
 	}
 	
 	public void throwADissLike() {
-		System.out.print("Diss like atacağınız video başlığını girin: ");
+		System.out.print("Dislike atacağınız video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
 		String sonuc = likeService.dissLikeAt(videoTitle);
@@ -95,7 +91,7 @@ public class LikeController {
 	}
 	
 	public void withDrawLike() {
-		System.out.print(" like geri cek atacağınız video başlığını girin: ");
+		System.out.print(" like geri cekmek istediğiniz video başlığını girin: ");
 		String videoTitle = scanner.nextLine();
 		
 		String sonuc = likeService.likeGeriCek(videoTitle);

@@ -109,8 +109,6 @@ public class VideoService {
 	
 	public Optional<Video> findById(Long id) {
 		Optional<Video> videoOptional = videoRepository.findById(id);
-		videoOptional.ifPresentOrElse(video -> System.out.println("Service Video bulundu: " + video.getTitle()),
-		                              () -> System.out.println("Service Böyle bir Video bulunamadı."));
 		return videoOptional;
 	}
 	

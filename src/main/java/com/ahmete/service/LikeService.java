@@ -166,7 +166,7 @@ public class LikeService {
 			
 			likeRepository.save(like);
 			videoService.likeCount(video.getTitle());
-			return "Video başlığına göre like atıldı.";
+			return "Like atıldı.";
 		} else {
 			return "Video başlığı ile video bulunamadı.";
 		}
@@ -184,7 +184,7 @@ public class LikeService {
 				like.setStatus(2);
 				likeRepository.update(like);
 				videoService.incrementDisLikeCount(video.getTitle());
-				return "Video başlığına göre diss like atıldı.";
+				return "Dislike atıldı.";
 			} else {
 				return "Video için diss like bulunamadı.";
 			}
@@ -204,7 +204,7 @@ public class LikeService {
 				Like like = likeOpt.get();
 				like.setStatus(0);
 				likeRepository.update(like);
-				return "Video başlığına göre like'ı geri cek atıldı.";
+				return " like geri cekildi.";
 			} else {
 				return "Video için like bulunamadı.";
 			}

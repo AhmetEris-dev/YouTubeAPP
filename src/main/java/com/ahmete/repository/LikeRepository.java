@@ -45,9 +45,9 @@ public class LikeRepository implements ICrud<Like> {
 			preparedStatement.setLong(4, like.getId());
 			int updatedRows = preparedStatement.executeUpdate();
 			if (updatedRows > 0) {
-				System.out.println("Güncelleme Başarılı!");
+			
 			} else {
-				System.out.println("Güncelleme Başarısız!");
+			
 			}
 		} catch (SQLException e) {
 			System.err.println("Repository: Like verileri alınırken hata oluştu: " + e.getMessage());
