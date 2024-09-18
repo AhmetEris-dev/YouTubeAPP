@@ -161,7 +161,7 @@ public class VideoController {
 			return;
 		}
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Bir video başlığı girin: ");
+		System.out.print("İzlemek istediğiniz video'nun başlığı girin: ");
 		String selectedVideoTitle = scanner.nextLine();
 		
 		
