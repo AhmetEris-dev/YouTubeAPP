@@ -70,4 +70,4 @@
 ### Bu projede kullanıcı kayıt işlemi gercekleştirebilir,Video izleyebilir,Video paylaşabilir,Like atabilir,geri cekebilir ve dislike atabilir,Videolara yorum yapabilir,yorumunu duzenleyebilir ve yorumunu silebilir(soft delete)
 
 ## 7-Geliştirme Süreci
-### Bu projeyi yaparken mimariyi oluşturmakta zorlandık,dto sınıflarında kullanıcıya göstermemiz gereken kısımları belirlemede sıkıntılar yaşadık Ayrıca ICrud'ımızdaki ortak metot'larımız butun ihtiyacımızı karşılamadı bu yuzden yeni metotlar yazdık 
+### Bu projeyi yaparken mimariyi oluşturmakta zorlandık,dto sınıflarında kullanıcıya göstermemiz gereken kısımları belirlemede sıkıntılar yaşadık Ayrıca ICrud'ımızdaki ortak metot'larımız butun ihtiyacımızı karşılamadı bu yuzden yeni metotlar yazdık. 
