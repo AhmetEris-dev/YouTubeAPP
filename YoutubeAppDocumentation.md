@@ -1,4 +1,4 @@
-# YotubeApp 
+# YotubeApp
 
 ## 1-Genel İçerik ve Notlar
 
